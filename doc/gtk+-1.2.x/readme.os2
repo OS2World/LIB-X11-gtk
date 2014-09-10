@@ -1,0 +1,25 @@
+
+* This is gtk+-1.2.2 ported to XFree86/OS2 (compiled with emx0.9c).
+
+* Additional required libraries:
+  glib-1.2.2 (ftp://hobbes.nmsu.edu/pub/os2/dev/x11/gtk/glib122.zip)
+  GNU gettext (intl.dll, ftp://hobbes.nmsu.edu/pub/os2/dev/unix/gettext.zip)
+
+* The libraries are named as gdk12.* and gtk12.* to avoid conflict with
+  gtk+-1.0.x. For the same reason, the header files are located in
+  a different directory, %X11ROOT%\XFree86\include\gtk12.
+
+* The config shell script is also renamed to gtk12-config. You can set
+  the environment GTK_CONFIG to use it. For example,
+      set GTK_CONFIG=e:/XFree86/bin/gtk12-config
+
+* Since the official X server binaries are defective, XSHM is disabled in
+  gdk12.dll. gdk12.dll.xshm is a 'normal' gdk12.dll supporting XSHM.
+  If you have a good X server, you can copy it to gdk12.dll.
+
+* If you want to use theme engines, you can get
+  ftp://hobbes.nmsu.edu/pub/os2/dev/x11/gtk/gtk-engine.zip.
+
+--
+Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>
+

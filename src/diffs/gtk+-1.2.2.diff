@@ -1,0 +1,3825 @@
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/aclocal.m4 gtk+-1.2.2/aclocal.m4
+--- gtk+-1.2.2.orig/aclocal.m4	Wed Apr 14 05:17:06 1999
++++ gtk+-1.2.2/aclocal.m4	Mon Apr 19 15:15:12 1999
+@@ -467,7 +467,7 @@
+ 	  ac_save_CFLAGS="$CFLAGS"
+ 	  LIBS="conftestm.$ac_objext"
+ 	  CFLAGS="$CFLAGS$no_builtin_flag"
+-	  if AC_TRY_EVAL(ac_link) && test -s conftest; then
++	  if AC_TRY_EVAL(ac_link) && test -s conftest$ac_exeext; then
+ 	    ac_pipe_works=yes
+ 	  else
+ 	    echo "configure: failed program was:" >&AC_FD_CC
+@@ -966,7 +966,9 @@
+ AC_MSG_CHECKING([for $ac_word])
+ AC_CACHE_VAL(ac_cv_path_$1,
+ [case "[$]$1" in
+-  /*)
++changequote(, )dnl
++  /*|[A-Za-z]:[/\\]*)
++changequote([, ])dnl
+   ac_cv_path_$1="[$]$1" # Let the user override the test with a path.
+   ;;
+   *)
+@@ -976,6 +978,12 @@
+     if test -f $ac_dir/$ac_word; then
+       if [$3]; then
+ 	ac_cv_path_$1="$ac_dir/$ac_word"
++	break
++      fi
++    fi
++    if test -f $ac_dir/$ac_word$ac_exeext; then
++      if [$3]; then
++	ac_cv_path_$1="$ac_dir/$ac_word$ac_exeext"
+ 	break
+       fi
+     fi
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/config.h gtk+-1.2.2/config.h
+--- gtk+-1.2.2.orig/config.h	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/config.h	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,159 @@
++/* config.h.  Generated automatically by configure.  */
++/* config.h.in.  Generated automatically from configure.in by autoheader.  */
++
++/* Define if using alloca.c.  */
++/* #undef C_ALLOCA */
++
++/* Define to empty if the keyword does not work.  */
++/* #undef const */
++
++/* Define to one of _getb67, GETB67, getb67 for Cray-2 and Cray-YMP systems.
++   This function is required for alloca.c support on those systems.  */
++/* #undef CRAY_STACKSEG_END */
++
++/* Define if you have alloca, as a function or macro.  */
++#define HAVE_ALLOCA 1
++
++/* Define if you have <alloca.h> and it should be used (not on Ultrix).  */
++#define HAVE_ALLOCA_H 1
++
++/* Define if you have a working `mmap' system call.  */
++/* #undef HAVE_MMAP */
++
++/* Define as __inline if that's what the C compiler calls it.  */
++/* #undef inline */
++
++/* Define to `long' if <sys/types.h> doesn't define.  */
++/* #undef off_t */
++
++/* Define if you need to in order for stat and other things to work.  */
++/* #undef _POSIX_SOURCE */
++
++/* Define as the return type of signal handlers (int or void).  */
++#define RETSIGTYPE void
++
++/* Define to `unsigned' if <sys/types.h> doesn't define.  */
++/* #undef size_t */
++
++/* If using the C implementation of alloca, define if you know the
++   direction of stack growth for your system; otherwise it will be
++   automatically deduced at run-time.
++ STACK_DIRECTION > 0 => grows toward higher addresses
++ STACK_DIRECTION < 0 => grows toward lower addresses
++ STACK_DIRECTION = 0 => direction of growth unknown
++ */
++/* #undef STACK_DIRECTION */
++
++/* Define if you have the ANSI C header files.  */
++#define STDC_HEADERS 1
++
++/* Define if the X Window System is missing or not being used.  */
++/* #undef X_DISPLAY_MISSING */
++
++/* Other stuff */
++#define ENABLE_NLS 1
++#define GTK_COMPILED_WITH_DEBUGGING "minimum"
++
++/* #undef HAVE_CATGETS */
++#define HAVE_GETTEXT 1
++#define HAVE_IPC_H 1
++/* #undef HAVE_LC_MESSAGES */
++#define HAVE_SHM_H 1
++/* #undef HAVE_STPCPY */
++#define HAVE_XSHM_H 1
++#define HAVE_SHAPE_EXT 1
++/* #undef HAVE_SYS_SELECT_H */
++#define HAVE_XCONVERTCASE 1
++
++/* #undef NO_FD_SET */
++
++/* Define to use X11R6 additions to XIM */
++#define USE_X11R6_XIM 1
++
++#define XINPUT_NONE 1
++/* #undef XINPUT_GXI */
++/* #undef XINPUT_XFREE */
++
++/* Define as the return type of signal handlers (int or void).  */
++#define RETSIGTYPE void
++
++/* Define if you have the __argz_count function.  */
++/* #undef HAVE___ARGZ_COUNT */
++
++/* Define if you have the __argz_next function.  */
++/* #undef HAVE___ARGZ_NEXT */
++
++/* Define if you have the __argz_stringify function.  */
++/* #undef HAVE___ARGZ_STRINGIFY */
++
++/* Define if you have the broken_wctype function.  */
++/* #undef HAVE_BROKEN_WCTYPE */
++
++/* Define if you have the dcgettext function.  */
++/* #undef HAVE_DCGETTEXT */
++
++/* Define if you have the getcwd function.  */
++#define HAVE_GETCWD 1
++
++/* Define if you have the getpagesize function.  */
++#define HAVE_GETPAGESIZE 1
++
++/* Define if you have the munmap function.  */
++/* #undef HAVE_MUNMAP */
++
++/* Define if you have the putenv function.  */
++#define HAVE_PUTENV 1
++
++/* Define if you have the setenv function.  */
++/* #undef HAVE_SETENV */
++
++/* Define if you have the setlocale function.  */
++#define HAVE_SETLOCALE 1
++
++/* Define if you have the stpcpy function.  */
++/* #undef HAVE_STPCPY */
++
++/* Define if you have the strcasecmp function.  */
++/* #undef HAVE_STRCASECMP */
++
++/* Define if you have the strchr function.  */
++#define HAVE_STRCHR 1
++
++/* Define if you have the strdup function.  */
++#define HAVE_STRDUP 1
++
++/* Define if you have the <argz.h> header file.  */
++/* #undef HAVE_ARGZ_H */
++
++/* Define if you have the <limits.h> header file.  */
++#define HAVE_LIMITS_H 1
++
++/* Define if you have the <locale.h> header file.  */
++#define HAVE_LOCALE_H 1
++
++/* Define if you have the <malloc.h> header file.  */
++#define HAVE_MALLOC_H 1
++
++/* Define if you have the <nl_types.h> header file.  */
++/* #undef HAVE_NL_TYPES_H */
++
++/* Define if you have the <string.h> header file.  */
++#define HAVE_STRING_H 1
++
++/* Define if you have the <sys/param.h> header file.  */
++#define HAVE_SYS_PARAM_H 1
++
++/* Define if you have the <unistd.h> header file.  */
++#define HAVE_UNISTD_H 1
++
++/* Define if you have the <wchar.h> header file.  */
++/* #undef HAVE_WCHAR_H */
++
++/* Define if you have the <wctype.h> header file.  */
++/* #undef HAVE_WCTYPE_H */
++
++/* Define if you have the i library (-li).  */
++/* #undef HAVE_LIBI */
++
++/* Define if you have the intl library (-lintl).  */
++#define HAVE_LIBINTL 1
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/docs/Imakefile gtk+-1.2.2/docs/Imakefile
+--- gtk+-1.2.2.orig/docs/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/docs/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,15 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>	03/08/1999
++ */
++
++#include "../gtk.cf"
++
++InstallManPage($(GTK_LIB)-config,$(MANDIR))
++
++$(GTK_LIB)-config.man: gtk-config.1.in
++	sed -e "s,@VERSION@,$(GTK_VERSION),g" $< > $@
++
++clean::
++	$(RM) $(GTK_LIB)-config.man
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/aspectframe/Imakefile gtk+-1.2.2/examples/aspectframe/Imakefile
+--- gtk+-1.2.2.orig/examples/aspectframe/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/aspectframe/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(aspectframe)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/base/Imakefile gtk+-1.2.2/examples/base/Imakefile
+--- gtk+-1.2.2.orig/examples/base/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/base/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(base)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/buttons/Imakefile gtk+-1.2.2/examples/buttons/Imakefile
+--- gtk+-1.2.2.orig/examples/buttons/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/buttons/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,10 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(buttons)
++InstallNonExecFile(info.xpm,$(BINDIR))
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/calendar/Imakefile gtk+-1.2.2/examples/calendar/Imakefile
+--- gtk+-1.2.2.orig/examples/calendar/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/calendar/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(gcalendar)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/clist/Imakefile gtk+-1.2.2/examples/clist/Imakefile
+--- gtk+-1.2.2.orig/examples/clist/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/clist/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(clist)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/entry/Imakefile gtk+-1.2.2/examples/entry/Imakefile
+--- gtk+-1.2.2.orig/examples/entry/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/entry/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(entry)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/eventbox/Imakefile gtk+-1.2.2/examples/eventbox/Imakefile
+--- gtk+-1.2.2.orig/examples/eventbox/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/eventbox/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(eventbox)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/exampleos2.def gtk+-1.2.2/examples/exampleos2.def
+--- gtk+-1.2.2.orig/examples/exampleos2.def	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/exampleos2.def	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,2 @@
++NAME WINDOWCOMPAT
++STACKSIZE 65536
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/examples.tmpl gtk+-1.2.2/examples/examples.tmpl
+--- gtk+-1.2.2.orig/examples/examples.tmpl	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/examples.tmpl	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,17 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#define BuildOMFEXE	YES
++
++#include "../../gtk.cf"
++
++PROG_OMF_DEF = ../exampleos2.def
++
++INCLUDES = -I../.. -I$(GLIB_INCDIR)
++
++BINDIR = ProjectRoot/bin/gtk+_example
++
++LOCAL_LIBRARIES = -L../../gtk -L../../gdk $(L_GTK_LIBS)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/filesel/Imakefile gtk+-1.2.2/examples/filesel/Imakefile
+--- gtk+-1.2.2.orig/examples/filesel/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/filesel/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(filesel)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/fixed/Imakefile gtk+-1.2.2/examples/fixed/Imakefile
+--- gtk+-1.2.2.orig/examples/fixed/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/fixed/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(fixed)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/frame/Imakefile gtk+-1.2.2/examples/frame/Imakefile
+--- gtk+-1.2.2.orig/examples/frame/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/frame/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(frame)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/gtkdial/Imakefile gtk+-1.2.2/examples/gtkdial/Imakefile
+--- gtk+-1.2.2.orig/examples/gtkdial/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/gtkdial/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,11 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SRCS = gtkdial.c dial_test.c
++
++ComplexProgramTarget(dial_test)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/helloworld/Imakefile gtk+-1.2.2/examples/helloworld/Imakefile
+--- gtk+-1.2.2.orig/examples/helloworld/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/helloworld/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(helloworld)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/helloworld2/Imakefile gtk+-1.2.2/examples/helloworld2/Imakefile
+--- gtk+-1.2.2.orig/examples/helloworld2/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/helloworld2/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(helloworld2)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/Imakefile gtk+-1.2.2/examples/Imakefile
+--- gtk+-1.2.2.orig/examples/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,49 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>	03/08/1999
++ */
++
++#define IHaveSubdirs
++#define PassCDebugFlags
++
++#include "../gtk.cf"
++
++SUBDIRS = \
++		aspectframe \
++		base \
++		buttons \
++		calendar \
++		clist \
++		entry \
++		eventbox \
++		filesel \
++		fixed \
++		frame \
++		gtkdial \
++		helloworld \
++		helloworld2 \
++		list \
++		menu \
++		notebook \
++		packbox \
++		packer \
++		paned \
++		pixmap \
++		progressbar \
++		radiobuttons \
++		rangewidgets \
++		rulers \
++		scribble-simple \
++		scrolledwin \
++		selection \
++		spinbutton \
++		statusbar \
++		table \
++		text \
++		tictactoe \
++		tree \
++		wheelbarrow
++
++MakeSubdirs($(SUBDIRS))
++DependSubdirs($(SUBDIRS))
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/list/Imakefile gtk+-1.2.2/examples/list/Imakefile
+--- gtk+-1.2.2.orig/examples/list/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/list/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(list)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/menu/Imakefile gtk+-1.2.2/examples/menu/Imakefile
+--- gtk+-1.2.2.orig/examples/menu/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/menu/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,18 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++OBJS1 = menu.o
++PROG1 = menu
++OBJS2 = itemfactory.o
++PROG2 = itemfactory
++
++AllTarget(ProgramTargetName($(PROG1)) ProgramTargetName($(PROG2)))
++NormalProgramTarget($(PROG1),$(OBJS1),,$(LOCAL_LIBRARIES),)
++InstallProgram($(PROG1),$(BINDIR))
++NormalProgramTarget($(PROG2),$(OBJS2),,$(LOCAL_LIBRARIES),)
++InstallProgram($(PROG2),$(BINDIR))
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/notebook/Imakefile gtk+-1.2.2/examples/notebook/Imakefile
+--- gtk+-1.2.2.orig/examples/notebook/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/notebook/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(notebook)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/packbox/Imakefile gtk+-1.2.2/examples/packbox/Imakefile
+--- gtk+-1.2.2.orig/examples/packbox/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/packbox/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(packbox)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/packer/Imakefile gtk+-1.2.2/examples/packer/Imakefile
+--- gtk+-1.2.2.orig/examples/packer/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/packer/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(pack)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/paned/Imakefile gtk+-1.2.2/examples/paned/Imakefile
+--- gtk+-1.2.2.orig/examples/paned/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/paned/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(paned)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/pixmap/Imakefile gtk+-1.2.2/examples/pixmap/Imakefile
+--- gtk+-1.2.2.orig/examples/pixmap/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/pixmap/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(pixmap)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/progressbar/Imakefile gtk+-1.2.2/examples/progressbar/Imakefile
+--- gtk+-1.2.2.orig/examples/progressbar/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/progressbar/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(progressbar)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/radiobuttons/Imakefile gtk+-1.2.2/examples/radiobuttons/Imakefile
+--- gtk+-1.2.2.orig/examples/radiobuttons/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/radiobuttons/Imakefile	Mon Apr 19 15:15:12 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(radiobuttons)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/rangewidgets/Imakefile gtk+-1.2.2/examples/rangewidgets/Imakefile
+--- gtk+-1.2.2.orig/examples/rangewidgets/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/rangewidgets/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(rangewidgets)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/rulers/Imakefile gtk+-1.2.2/examples/rulers/Imakefile
+--- gtk+-1.2.2.orig/examples/rulers/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/rulers/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(rulers)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/scribble-simple/Imakefile gtk+-1.2.2/examples/scribble-simple/Imakefile
+--- gtk+-1.2.2.orig/examples/scribble-simple/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/scribble-simple/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(scribble-simple)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/scrolledwin/Imakefile gtk+-1.2.2/examples/scrolledwin/Imakefile
+--- gtk+-1.2.2.orig/examples/scrolledwin/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/scrolledwin/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(scrolledwin)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/selection/Imakefile gtk+-1.2.2/examples/selection/Imakefile
+--- gtk+-1.2.2.orig/examples/selection/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/selection/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,24 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++OBJS1 = gettargets.o
++PROG1 = gettargets
++#if 0
++/* broken */
++OBJS2 = setselection.o
++PROG2 = setselection
++#endif
++
++AllTarget(ProgramTargetName($(PROG1)) ProgramTargetName($(PROG2)))
++NormalProgramTarget($(PROG1),$(OBJS1),,$(LOCAL_LIBRARIES),)
++InstallProgram($(PROG1),$(BINDIR))
++#if 0
++/* broken */
++NormalProgramTarget($(PROG2),$(OBJS2),,$(LOCAL_LIBRARIES),)
++InstallProgram($(PROG2),$(BINDIR))
++#endif
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/spinbutton/Imakefile gtk+-1.2.2/examples/spinbutton/Imakefile
+--- gtk+-1.2.2.orig/examples/spinbutton/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/spinbutton/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(spinbutton)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/statusbar/Imakefile gtk+-1.2.2/examples/statusbar/Imakefile
+--- gtk+-1.2.2.orig/examples/statusbar/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/statusbar/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(statusbar)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/table/Imakefile gtk+-1.2.2/examples/table/Imakefile
+--- gtk+-1.2.2.orig/examples/table/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/table/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(table)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/text/Imakefile gtk+-1.2.2/examples/text/Imakefile
+--- gtk+-1.2.2.orig/examples/text/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/text/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(text)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/tictactoe/Imakefile gtk+-1.2.2/examples/tictactoe/Imakefile
+--- gtk+-1.2.2.orig/examples/tictactoe/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/tictactoe/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,11 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SRCS = tictactoe.c ttt_test.c
++
++ComplexProgramTarget(ttt_test)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/tree/Imakefile gtk+-1.2.2/examples/tree/Imakefile
+--- gtk+-1.2.2.orig/examples/tree/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/tree/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(tree)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/examples/wheelbarrow/Imakefile gtk+-1.2.2/examples/wheelbarrow/Imakefile
+--- gtk+-1.2.2.orig/examples/wheelbarrow/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/examples/wheelbarrow/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>  03/08/1999
++ */
++
++#include "../examples.tmpl"
++
++SimpleProgramTarget(wheelbarrow)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gdk/gdkglobals.c gtk+-1.2.2/gdk/gdkglobals.c
+--- gtk+-1.2.2.orig/gdk/gdkglobals.c	Wed Feb 24 18:14:54 1999
++++ gtk+-1.2.2/gdk/gdkglobals.c	Mon Apr 19 15:15:14 1999
+@@ -31,7 +31,12 @@
+ #include "config.h"
+ 
+ guint             gdk_debug_flags = 0;
++#if !DISABLE_XSHM
+ gint              gdk_use_xshm = TRUE;
++#else
++/* XXX, for os/2 */
++gint              gdk_use_xshm = FALSE;
++#endif
+ gchar            *gdk_display_name = NULL;
+ Display          *gdk_display = NULL;
+ gint              gdk_screen;
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gdk/gdkos2.def.in gtk+-1.2.2/gdk/gdkos2.def.in
+--- gtk+-1.2.2.orig/gdk/gdkos2.def.in	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gdk/gdkos2.def.in	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,388 @@
++LIBRARY @dllname@
++DESCRIPTION "@dllname@.dll v@version@ for XFree86/OS2"
++CODE PRELOAD
++DATA MULTIPLE NONSHARED
++STACKSIZE 32768
++EXPORTS
++  "gdk_add_client_message_filter" @1
++  "gdk_atom_intern" @2
++  "gdk_atom_name" @3
++  "gdk_beep" @4
++  "gdk_bitmap_create_from_data" @5
++  "gdk_bitmap_ref" @6
++  "gdk_bitmap_unref" @7
++  "gdk_char_height" @8
++  "gdk_char_measure" @9
++  "gdk_char_width" @10
++  "gdk_char_width_wc" @11
++  "gdk_color_alloc" @12
++  "gdk_color_black" @13
++  "gdk_color_change" @14
++  "gdk_color_context_add_palette" @15
++  "gdk_color_context_free" @16
++  "gdk_color_context_free_dither" @17
++  "gdk_color_context_get_index_from_palette" @18
++  "gdk_color_context_get_pixel" @19
++  "gdk_color_context_get_pixel_from_palette" @20
++  "gdk_color_context_get_pixels" @21
++  "gdk_color_context_get_pixels_incremental" @22
++  "gdk_color_context_init_dither" @23
++  "gdk_color_context_new" @24
++  "gdk_color_context_new_mono" @25
++  "gdk_color_context_query_color" @26
++  "gdk_color_context_query_colors" @27
++  "gdk_color_copy" @28
++  "gdk_color_equal" @29
++  "gdk_color_free" @30
++  "gdk_color_hash" @31
++  "gdk_color_parse" @32
++  "gdk_color_white" @33
++  "gdk_colormap_alloc_color" @34
++  "gdk_colormap_alloc_colors" @35
++  "gdk_colormap_change" @36
++  "gdk_colormap_free_colors" @37
++  "gdk_colormap_get_system" @38
++  "gdk_colormap_get_system_size" @39
++  "gdk_colormap_get_visual" @40
++  "gdk_colormap_lookup" @41
++  "gdk_colormap_new" @42
++  "gdk_colormap_ref" @43
++  "gdk_colormap_sync" @44
++  "gdk_colormap_unref" @45
++  "gdk_colors_alloc" @46
++  "gdk_colors_free" @47
++  "gdk_colors_store" @48
++  "gdk_compress_exposures" @49
++  "gdk_cursor_destroy" @50
++  "gdk_cursor_new" @51
++  "gdk_cursor_new_from_pixmap" @52
++  "gdk_debug_flags" @53
++  "gdk_default_filters" @54
++  "gdk_display" @55
++  "gdk_display_name" @56
++  "gdk_dnd" @57
++  "gdk_dnd_cursorinfo" @58
++  "gdk_dnd_init" @59
++  "gdk_drag_abort" @60
++  "gdk_drag_begin" @61
++  "gdk_drag_context_new" @62
++  "gdk_drag_context_ref" @63
++  "gdk_drag_context_unref" @64
++  "gdk_drag_drop" @65
++  "gdk_drag_find_window" @66
++  "gdk_drag_get_protocol" @67
++  "gdk_drag_get_selection" @68
++  "gdk_drag_motion" @69
++  "gdk_drag_status" @70
++  "gdk_draw_arc" @71
++  "gdk_draw_gray_image" @72
++  "gdk_draw_image" @73
++  "gdk_draw_indexed_image" @74
++  "gdk_draw_line" @75
++  "gdk_draw_lines" @76
++  "gdk_draw_pixmap" @77
++  "gdk_draw_point" @78
++  "gdk_draw_points" @79
++  "gdk_draw_polygon" @80
++  "gdk_draw_rectangle" @81
++  "gdk_draw_rgb_32_image" @82
++  "gdk_draw_rgb_image" @83
++  "gdk_draw_rgb_image_dithalign" @84
++  "gdk_draw_segments" @85
++  "gdk_draw_string" @86
++  "gdk_draw_text" @87
++  "gdk_draw_text_wc" @88
++  "gdk_drawable_set_data" @89
++  "gdk_drop_finish" @90
++  "gdk_drop_reply" @91
++  "gdk_error_code" @92
++  "gdk_error_warnings" @93
++  "gdk_event_copy" @94
++  "gdk_event_free" @95
++  "gdk_event_get" @96
++  "gdk_event_get_graphics_expose" @97
++  "gdk_event_get_time" @98
++  "gdk_event_handler_set" @99
++  "gdk_event_mask_table" @100
++  "gdk_event_peek" @101
++  "gdk_event_put" @102
++  "gdk_event_send_client_message" @103
++  "gdk_event_send_client_message_to_all_recurse" @104
++  "gdk_event_send_clientmessage_toall" @105
++  "gdk_events_init" @106
++  "gdk_events_pending" @107
++  "gdk_exit" @108
++  "gdk_flush" @109
++  "gdk_font_equal" @110
++  "gdk_font_id" @111
++  "gdk_font_load" @112
++  "gdk_font_ref" @113
++  "gdk_font_unref" @114
++  "gdk_fontset_load" @115
++  "gdk_free_compound_text" @116
++  "gdk_free_text_list" @117
++  "gdk_gc_copy" @118
++  "gdk_gc_destroy" @119
++  "gdk_gc_get_values" @120
++  "gdk_gc_new" @121
++  "gdk_gc_new_with_values" @122
++  "gdk_gc_ref" @123
++  "gdk_gc_set_background" @124
++  "gdk_gc_set_clip_mask" @125
++  "gdk_gc_set_clip_origin" @126
++  "gdk_gc_set_clip_rectangle" @127
++  "gdk_gc_set_clip_region" @128
++  "gdk_gc_set_dashes" @129
++  "gdk_gc_set_exposures" @130
++  "gdk_gc_set_fill" @131
++  "gdk_gc_set_font" @132
++  "gdk_gc_set_foreground" @133
++  "gdk_gc_set_function" @134
++  "gdk_gc_set_line_attributes" @135
++  "gdk_gc_set_stipple" @136
++  "gdk_gc_set_subwindow" @137
++  "gdk_gc_set_tile" @138
++  "gdk_gc_set_ts_origin" @139
++  "gdk_gc_unref" @140
++  "gdk_get_display" @141
++  "gdk_get_show_events" @142
++  "gdk_get_use_xshm" @143
++  "gdk_ic_attr_destroy" @144
++  "gdk_ic_attr_new" @145
++  "gdk_ic_cleanup" @146
++  "gdk_ic_destroy" @147
++  "gdk_ic_get_attr" @148
++  "gdk_ic_get_events" @149
++  "gdk_ic_get_style" @150
++  "gdk_ic_new" @151
++  "gdk_ic_set_attr" @152
++  "gdk_im_begin" @153
++  "gdk_im_close" @154
++  "gdk_im_decide_style" @155
++  "gdk_im_end" @156
++  "gdk_im_open" @157
++  "gdk_im_ready" @158
++  "gdk_im_set_best_style" @159
++  "gdk_image_destroy" @160
++  "gdk_image_exit" @161
++  "gdk_image_get" @162
++  "gdk_image_get_pixel" @163
++  "gdk_image_init" @164
++  "gdk_image_new" @165
++  "gdk_image_new_bitmap" @166
++  "gdk_image_put_pixel" @167
++  "gdk_init" @168
++  "gdk_input_add" @169
++  "gdk_input_add_full" @170
++  "gdk_input_exit" @171
++  "gdk_input_gxid_host" @172
++  "gdk_input_gxid_port" @173
++  "gdk_input_ignore_core" @174
++  "gdk_input_init" @175
++  "gdk_input_list_devices" @176
++  "gdk_input_motion_events" @177
++  "gdk_input_remove" @178
++  "gdk_input_set_axes" @179
++  "gdk_input_set_extension_events" @180
++  "gdk_input_set_key" @181
++  "gdk_input_set_mode" @182
++  "gdk_input_set_source" @183
++  "gdk_input_vtable" @184
++  "gdk_input_window_destroy" @185
++  "gdk_input_window_get_pointer" @186
++  "gdk_key_repeat_disable" @187
++  "gdk_key_repeat_restore" @188
++  "gdk_keyboard_grab" @189
++  "gdk_keyboard_ungrab" @190
++  "gdk_keyval_from_name" @191
++  "gdk_keyval_is_lower" @192
++  "gdk_keyval_is_upper" @193
++  "gdk_keyval_name" @194
++  "gdk_keyval_to_lower" @195
++  "gdk_keyval_to_upper" @196
++  "gdk_leader_window" @197
++  "gdk_list_visuals" @198
++  "gdk_mbstowcs" @199
++  "gdk_nevent_masks" @200
++  "gdk_null_window_warnings" @201
++  "gdk_pixmap_colormap_create_from_xpm" @202
++  "gdk_pixmap_colormap_create_from_xpm_d" @203
++  "gdk_pixmap_create_from_data" @204
++  "gdk_pixmap_create_from_xpm" @205
++  "gdk_pixmap_create_from_xpm_d" @206
++  "gdk_pixmap_foreign_new" @207
++  "gdk_pixmap_new" @208
++  "gdk_pixmap_ref" @209
++  "gdk_pixmap_unref" @210
++  "gdk_pointer_grab" @211
++  "gdk_pointer_is_grabbed" @212
++  "gdk_pointer_ungrab" @213
++  "gdk_progclass" @214
++  "gdk_property_change" @215
++  "gdk_property_delete" @216
++  "gdk_property_get" @217
++  "gdk_query_depths" @218
++  "gdk_query_visual_types" @219
++  "gdk_rectangle_intersect" @220
++  "gdk_rectangle_union" @221
++  "gdk_region_destroy" @222
++  "gdk_region_empty" @223
++  "gdk_region_equal" @224
++  "gdk_region_get_clipbox" @225
++  "gdk_region_new" @226
++  "gdk_region_offset" @227
++  "gdk_region_point_in" @228
++  "gdk_region_polygon" @229
++  "gdk_region_rect_in" @230
++  "gdk_region_shrink" @231
++  "gdk_region_union_with_rect" @232
++  "gdk_regions_intersect" @233
++  "gdk_regions_subtract" @234
++  "gdk_regions_union" @235
++  "gdk_regions_xor" @236
++  "gdk_rgb_cmap_free" @237
++  "gdk_rgb_cmap_new" @238
++  "gdk_rgb_ditherable" @239
++  "gdk_rgb_gc_set_background" @240
++  "gdk_rgb_gc_set_foreground" @241
++  "gdk_rgb_get_cmap" @242
++  "gdk_rgb_get_visual" @243
++  "gdk_rgb_init" @244
++  "gdk_rgb_set_install" @245
++  "gdk_rgb_set_min_colors" @246
++  "gdk_rgb_set_verbose" @247
++  "gdk_rgb_xpixel_from_rgb" @248
++  "gdk_root_parent" @249
++  "gdk_root_window" @250
++  "gdk_screen" @251
++  "gdk_screen_height" @252
++  "gdk_screen_height_mm" @253
++  "gdk_screen_width" @254
++  "gdk_screen_width_mm" @255
++  "gdk_selection_convert" @256
++  "gdk_selection_owner_get" @257
++  "gdk_selection_owner_set" @258
++  "gdk_selection_property" @259
++  "gdk_selection_property_get" @260
++  "gdk_selection_send_notify" @261
++  "gdk_send_xevent" @262
++  "gdk_set_locale" @263
++  "gdk_set_show_events" @264
++  "gdk_set_sm_client_id" @265
++  "gdk_set_use_xshm" @266
++  "gdk_string_extents" @267
++  "gdk_string_height" @268
++  "gdk_string_measure" @269
++  "gdk_string_to_compound_text" @270
++  "gdk_string_width" @271
++  "gdk_text_extents" @272
++  "gdk_text_extents_wc" @273
++  "gdk_text_height" @274
++  "gdk_text_measure" @275
++  "gdk_text_property_to_text_list" @276
++  "gdk_text_width" @277
++  "gdk_text_width_wc" @278
++  "gdk_threads_enter" @279
++  "gdk_threads_leave" @280
++  "gdk_threads_mutex" @281
++  "gdk_time_get" @282
++  "gdk_timer_disable" @283
++  "gdk_timer_enable" @284
++  "gdk_timer_get" @285
++  "gdk_timer_set" @286
++  "gdk_use_xshm" @287
++  "gdk_visual_get_best" @288
++  "gdk_visual_get_best_depth" @289
++  "gdk_visual_get_best_type" @290
++  "gdk_visual_get_best_with_both" @291
++  "gdk_visual_get_best_with_depth" @292
++  "gdk_visual_get_best_with_type" @293
++  "gdk_visual_get_system" @294
++  "gdk_visual_init" @295
++  "gdk_visual_lookup" @296
++  "gdk_visual_ref" @297
++  "gdk_visual_unref" @298
++  "gdk_wcstombs" @299
++  "gdk_window_add_colormap_windows" @300
++  "gdk_window_add_filter" @301
++  "gdk_window_at_pointer" @302
++  "gdk_window_clear" @303
++  "gdk_window_clear_area" @304
++  "gdk_window_clear_area_e" @305
++  "gdk_window_copy_area" @306
++  "gdk_window_destroy" @307
++  "gdk_window_destroy_notify" @308
++  "gdk_window_foreign_new" @309
++  "gdk_window_get_children" @310
++  "gdk_window_get_colormap" @311
++  "gdk_window_get_deskrelative_origin" @312
++  "gdk_window_get_events" @313
++  "gdk_window_get_geometry" @314
++  "gdk_window_get_origin" @315
++  "gdk_window_get_parent" @316
++  "gdk_window_get_pointer" @317
++  "gdk_window_get_position" @318
++  "gdk_window_get_root_origin" @319
++  "gdk_window_get_size" @320
++  "gdk_window_get_toplevel" @321
++  "gdk_window_get_toplevels" @322
++  "gdk_window_get_type" @323
++  "gdk_window_get_user_data" @324
++  "gdk_window_get_visual" @325
++  "gdk_window_hide" @326
++  "gdk_window_init" @327
++  "gdk_window_is_viewable" @328
++  "gdk_window_is_visible" @329
++  "gdk_window_lower" @330
++  "gdk_window_merge_child_shapes" @331
++  "gdk_window_move" @332
++  "gdk_window_move_resize" @333
++  "gdk_window_new" @334
++  "gdk_window_raise" @335
++  "gdk_window_ref" @336
++  "gdk_window_register_dnd" @337
++  "gdk_window_remove_filter" @338
++  "gdk_window_reparent" @339
++  "gdk_window_resize" @340
++  "gdk_window_set_back_pixmap" @341
++  "gdk_window_set_background" @342
++  "gdk_window_set_child_shapes" @343
++  "gdk_window_set_colormap" @344
++  "gdk_window_set_cursor" @345
++  "gdk_window_set_decorations" @346
++  "gdk_window_set_events" @347
++  "gdk_window_set_functions" @348
++  "gdk_window_set_geometry_hints" @349
++  "gdk_window_set_group" @350
++  "gdk_window_set_hints" @351
++  "gdk_window_set_icon" @352
++  "gdk_window_set_icon_name" @353
++  "gdk_window_set_override_redirect" @354
++  "gdk_window_set_role" @355
++  "gdk_window_set_title" @356
++  "gdk_window_set_transient_for" @357
++  "gdk_window_set_user_data" @358
++  "gdk_window_shape_combine_mask" @359
++  "gdk_window_show" @360
++  "gdk_window_unref" @361
++  "gdk_window_withdraw" @362
++  "gdk_window_xid_at" @363
++  "gdk_window_xid_at_coords" @364
++  "gdk_wm_delete_window" @365
++  "gdk_wm_protocols" @366
++  "gdk_wm_protocols_filter" @367
++  "gdk_wm_take_focus" @368
++  "gdk_wm_window_protocols" @369
++  "gdk_xgrab_window" @370
++  "gdk_xid_table_insert" @371
++  "gdk_xid_table_lookup" @372
++  "gdk_xid_table_remove" @373
++  "gdk_xim_ic" @374
++  "gdk_xim_using" @375
++  "gdk_xim_window" @376
++  "gdkx_colormap_get" @377
++  "gdkx_visual_get" @378
++  "gdk_window_set_static_gravities" @379
++  "gdk_error_trap_pop" @380
++  "gdk_error_trap_push" @381
++  "gdk_init_check" @382
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gdk/gdkos2.rsp.in gtk+-1.2.2/gdk/gdkos2.rsp.in
+--- gtk+-1.2.2.orig/gdk/gdkos2.rsp.in	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gdk/gdkos2.rsp.in	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,9 @@
++gdk.obj             gdkcc.obj           gdkcolor.obj        gdkcursor.obj+
++gdkdnd.obj          gdkdraw.obj         gdkevents.obj       gdkfont.obj+
++gdkgc.obj           gdkglobals.obj      gdkim.obj           gdkimage.obj+
++gdkinput.obj        gdkpixmap.obj       gdkproperty.obj     gdkrectangle.obj+
++gdkregion.obj       gdkrgb.obj          gdkselection.obj    gdkvisual.obj+
++gdkwindow.obj       gdkxid.obj          gxid_lib.obj+
++/NOL /NOD /BAT
++@libname@.dll
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gdk/Imakefile gtk+-1.2.2/gdk/Imakefile
+--- gtk+-1.2.2.orig/gdk/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gdk/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,61 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw> 03/08/1999
++ */
++
++#include "../gtk.cf"
++
++#define DoNormalLib (!HasSharedLibraries || ForceNormalLib)
++#define DoSharedLib HasSharedLibraries
++#define LibName GdkLibName
++#define IncSubdir GtkLibName
++#define IncSubSubdir gdk
++
++REQUIREDLIBS = $(X11ROOT)\\XFree86\\lib\\ Xext X11 shm $(GLIB_LIB)
++
++INCLUDES = -I.. -I. -I$(GLIB_INCDIR)
++
++DEFINES = -DHAVE_CONFIG_H -DG_LOG_DOMAIN=\"Gdk\" -DGTK_NO_CHECK_CASTS \
++	  -DUSE_XIM -DDISABLE_XSHM=GdkDisableXshm
++
++HEADERS = \
++	gdk.h		\
++	gdkcursors.h	\
++	gdkrgb.h	\
++	gdki18n.h	\
++	gdkkeysyms.h	\
++	gdkprivate.h	\
++	gdktypes.h	\
++	gdkx.h
++
++SRCS = \
++	gdk.c		\
++	gdkcc.c		\
++	gdkcolor.c	\
++	gdkcursor.c	\
++	gdkdnd.c	\
++	gdkdraw.c	\
++	gdkevents.c     \
++	gdkfont.c	\
++	gdkgc.c		\
++	gdkglobals.c	\
++	gdkim.c		\
++	gdkimage.c	\
++	gdkinput.c	\
++	gdkpixmap.c	\
++	gdkproperty.c	\
++	gdkrgb.c	\
++	gdkrectangle.c	\
++	gdkregion.c	\
++	gdkselection.c	\
++	gdkvisual.c	\
++	gdkwindow.c	\
++	gdkxid.c 	\
++        gxid_lib.c
++
++#include <Library.tmpl>
++
++MakeLibDefRsp(gdk,$(GTK_VERSION))
++
++DependTarget()
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkfilesel.c gtk+-1.2.2/gtk/gtkfilesel.c
+--- gtk+-1.2.2.orig/gtk/gtkfilesel.c	Wed Feb 24 18:15:08 1999
++++ gtk+-1.2.2/gtk/gtkfilesel.c	Mon Apr 19 15:15:14 1999
+@@ -56,6 +56,14 @@
+ #include "gtkdialog.h"
+ #include "gtkintl.h"
+ 
++#ifdef __EMX__
++#define INCL_DOSFILEMGR
++#define INCL_DOSERRORS
++#include <os2.h>
++#define getcwd _getcwd2
++#define chdir  _chdir2
++#endif
++
+ #define DIR_LIST_WIDTH   180
+ #define DIR_LIST_HEIGHT  180
+ #define FILE_LIST_WIDTH  180
+@@ -91,7 +99,12 @@
+ #define PATTERN_MATCH -1
+ /* The arguments used by all fnmatch() calls below
+  */
++#ifndef __EMX__
+ #define FNMATCH_FLAGS (FNM_PATHNAME | FNM_PERIOD)
++#else
++/* os/2: no dot hidden file and case insensitive */
++#define FNMATCH_FLAGS (FNM_PATHNAME | FNM_CASEFOLD)
++#endif
+ 
+ #define CMPL_ERRNO_TOO_LONG ((1<<16)-1)
+ 
+@@ -779,6 +792,12 @@
+   cmpl_state = (CompletionState*) fs->cmpl_state;
+   path = cmpl_reference_position (cmpl_state);
+   
++#ifdef __EMX__
++  /* append "/" only when tail is not "/" */
++  if (*path && path[strlen(path)-1] == '/')
++    full_path = g_strconcat (path, dirname, NULL);
++  else
++#endif
+   full_path = g_strconcat (path, "/", dirname, NULL);
+   if ( (mkdir (full_path, 0755) < 0) ) 
+     {
+@@ -876,6 +895,12 @@
+   cmpl_state = (CompletionState*) fs->cmpl_state;
+   path = cmpl_reference_position (cmpl_state);
+   
++#ifdef __EMX__
++  /* append "/" only when tail is not "/" */
++  if (*path && path[strlen(path)-1] == '/')
++    full_path = g_strconcat (path, fs->fileop_file, NULL);
++  else
++#endif
+   full_path = g_strconcat (path, "/", fs->fileop_file, NULL);
+   if ( (unlink (full_path) < 0) ) 
+     {
+@@ -980,8 +1005,21 @@
+   cmpl_state = (CompletionState*) fs->cmpl_state;
+   path = cmpl_reference_position (cmpl_state);
+   
++#ifdef __EMX__
++  /* append "/" only when tail is not "/" */
++  if (*path && path[strlen(path)-1] == '/')
++  {
++    new_filename = g_strconcat (path, file, NULL);
++    old_filename = g_strconcat (path, fs->fileop_file, NULL);
++  }
++  else
++  {
++#endif
+   new_filename = g_strconcat (path, "/", file, NULL);
+   old_filename = g_strconcat (path, "/", fs->fileop_file, NULL);
++#ifdef __EMX__
++  }
++#endif
+ 
+   if ( (rename (old_filename, new_filename)) < 0) 
+     {
+@@ -1174,7 +1212,12 @@
+     {
+       /* the i == dir_len is to catch the full path for the first 
+        * entry. */
++#ifndef __EMX__
+       if ( (current_dir[i] == '/') || (i == dir_len))
++#else
++      /* for os/2, exclude the case 'x:/' to prevent duplicate */
++      if ( (current_dir[i] == '/') || (i == dir_len && dir_len != 3))
++#endif
+ 	{
+ 	  /* another small hack to catch the full path */
+ 	  if (i != dir_len) 
+@@ -1247,6 +1290,21 @@
+     }
+ }
+ 
++#ifdef __EMX__
++static inline void
++gtk_dir_filename(gchar *filename)
++{
++  /* deal with changing drive */
++  if (strlen(filename) == 4 && filename[0] == '[' &&
++      filename[2] == ':' && filename[3] == ']')
++    {
++      filename[0] = filename[1];
++      filename[1] = filename[2];
++      filename[2] = '\0';
++    }
++}
++#endif
++
+ static void
+ gtk_file_selection_dir_button (GtkWidget *widget,
+ 			       gint row, 
+@@ -1276,11 +1334,21 @@
+ 	    break;
+ 	  
+ 	  default:
++#ifdef __EMX__
++	    gtk_dir_filename(filename);
++#endif
+ 	    gtk_entry_set_text (GTK_ENTRY (fs->selection_entry), filename);
+ 	    break;
+ 	  }
+       else
++#ifdef __EMX__
++      {
++	gtk_dir_filename(filename);
++#endif
+ 	gtk_entry_set_text (GTK_ENTRY (fs->selection_entry), filename);
++#ifdef __EMX__
++      }
++#endif
+ 
+       g_free (filename);
+     }
+@@ -1308,6 +1376,45 @@
+   g_return_if_fail (GTK_IS_FILE_SELECTION (fs));
+   
+   cmpl_state = (CompletionState*) fs->cmpl_state;
++#ifdef __EMX__
++  _fnslashify(rel_path);/* change '\\' in completion input to '/' */
++  if ((strlen(rel_path) >= 2 && isalpha(rel_path[0]) && rel_path[1] == ':') ||
++      (strlen(rel_path) == 4 && rel_path[0] == '[' &&
++	rel_path[2] == ':' && rel_path[3] == ']'))
++    { /* change drive */
++      struct {
++        ULONG ulVolser;
++        VOLUMELABEL vol;
++      } buf = {0};
++      char drv = toupper(rel_path[strlen(rel_path)==4 ? 1 : 0]);
++      chdir(cmpl_state->reference_dir->fullname);
++      if (DosQueryFSInfo(drv-'A'+1, FSIL_VOLSER, &buf, sizeof(buf)) == NO_ERROR)
++        _chdrive(drv);
++      else
++	return;
++      g_free(cmpl_state->reference_dir->fullname);
++      filename = getcwd(NULL, MAXPATHLEN);
++      cmpl_state->reference_dir->fullname = g_strdup(filename);
++      cmpl_state->reference_dir->fullname_len = strlen(filename);
++      free(filename);
++      if (strlen(rel_path) == 2 || strlen(rel_path) == 4) /* only drive name */
++	{
++	  rel_path[0] = '\0';
++	  try_complete = FALSE;
++	}
++      else
++	{
++	  memmove(rel_path, rel_path + 2, strlen(rel_path) - 1);
++	}
++    }
++  if ((strcmp(rel_path, "../") == 0 || strcmp(rel_path, "./") == 0) &&
++	_fnisabs(cmpl_reference_position(cmpl_state)) &&
++	strlen(cmpl_reference_position(cmpl_state)) == 3)
++    { /* x:/../ = x:/, x:/./ = x:/ */
++      rel_path[0] = '\0';
++      try_complete = FALSE;
++    }
++#endif
+   poss = cmpl_completion_matches (rel_path, &rem_path, cmpl_state);
+ 
+   if (!cmpl_state_okay (cmpl_state))
+@@ -1507,7 +1614,14 @@
+     }
+   else if (text[0] == '/')
+     {
++#ifndef __EMX__
+       strcpy (cmpl_state->updated_text, text);
++#else
++      /* prepend drive name in absolute path */
++      cmpl_state->updated_text[0] = _getdrive();
++      cmpl_state->updated_text[1] = ':';
++      strcpy (cmpl_state->updated_text + 2, text);
++#endif
+     }
+   else if (text[0] == '~')
+     {
+@@ -1533,9 +1647,20 @@
+ 	    strcat (cmpl_state->updated_text, slash);
+ 	}
+     }
++#ifdef __EMX__
++  else if (strlen(text) >= 2 && isalpha(text[0]) && text[1] == ':')
++    { /* completion input has drive name */
++      strcpy (cmpl_state->updated_text, text);
++    }
++#endif
+   else
+     {
+       strcpy (cmpl_state->updated_text, cmpl_state->reference_dir->fullname);
++#ifdef __EMX__
++      if (*cmpl_state->reference_dir->fullname &&
++	  cmpl_state->reference_dir->fullname[strlen(cmpl_state->reference_dir->fullname)-1] != '/')
++/* append "/" only when tail is not "/" */
++#endif
+       strcat (cmpl_state->updated_text, "/");
+       strcat (cmpl_state->updated_text, text);
+     }
+@@ -1805,11 +1930,31 @@
+ 
+   if (text_to_complete[0] == '/' || !cmpl_state->reference_dir)
+     {
++#ifndef __EMX__
+       new_dir = open_dir("/", cmpl_state);
++#else
++      /* pretend drive name in absolute path */
++      gchar dir[5];
++      sprintf(dir, "%c:/", _getdrive());
++      new_dir = open_dir(dir, cmpl_state);
++#endif
+ 
+       if(new_dir)
+ 	*remaining_text = text_to_complete + 1;
+     }
++#ifdef __EMX__
++  /* deal with the case 'x:/...' */
++  else if (_fnisabs(text_to_complete))
++    {
++      gchar tmp[5];
++      strncpy(tmp, text_to_complete, 3);
++      tmp[3] = '\0';
++      new_dir = open_dir(tmp, cmpl_state);
++
++      if(new_dir)
++	*remaining_text = text_to_complete + 3;
++    }
++#endif
+   else if (text_to_complete[0] == '~')
+     {
+       new_dir = open_user_dir(text_to_complete, cmpl_state);
+@@ -1904,7 +2049,12 @@
+ 
+   strcpy(path_buf, dir->fullname);
+ 
++#ifndef __EMX__
+   if(dir->fullname_len > 1)
++#else
++  /* os/2 has drive name in path */
++  if(dir->fullname_len > 3)
++#endif
+     {
+       path_buf[dir->fullname_len] = '/';
+       strcpy(path_buf + dir->fullname_len + 1, dir_name);
+@@ -1969,8 +2119,14 @@
+ 	}
+     }
+ 
++#ifndef __EMX__
+   sent->name_buffer = g_new(gchar, buffer_size);
+   sent->entries = g_new(CompletionDirEntry, entry_count);
++#else
++  /* os/2 name_buffer includes drive name */
++  sent->name_buffer = g_new(gchar, buffer_size + 5 * 26);
++  sent->entries = g_new(CompletionDirEntry, entry_count + 26);
++#endif
+   sent->entry_count = entry_count;
+ 
+   buffer_ptr = sent->name_buffer;
+@@ -1994,8 +2150,18 @@
+       *buffer_ptr = 0;
+       buffer_ptr += 1;
+ 
++#ifdef __EMX__
++      /* append '/' only when tail is not '/' */ 
++      if (path_buf_len > 0 && path_buf[path_buf_len-1] == '/')
++	strcpy(path_buf + path_buf_len, dirent_ptr->d_name);
++      else
++      {
++#endif
+       path_buf[path_buf_len] = '/';
+       strcpy(path_buf + path_buf_len + 1, dirent_ptr->d_name);
++#ifdef __EMX__
++      }
++#endif
+ 
+       if (stat_subdirs)
+ 	{
+@@ -2005,6 +2171,11 @@
+ 	    /* stat may fail, and we don't mind, since it could be a
+ 	     * dangling symlink. */
+ 	    sent->entries[i].is_dir = 0;
++#ifdef __EMX__
++	  /* deal with the exception: x:/.. is not dir */
++	  if (strcmp(sent->entries[i].entry_name, "..") == 0)
++	  sent->entries[i].is_dir = 1;
++#endif
+ 	}
+       else
+ 	sent->entries[i].is_dir = 1;
+@@ -2014,6 +2185,26 @@
+ 
+   closedir(directory);
+ 
++#ifdef __EMX__
++  /* query all drive name */
++  {
++    ULONG cur, drvmap, mask;
++    UCHAR x;
++
++    if (DosQueryCurrentDisk(&cur, &drvmap) == NO_ERROR)
++      for(x = 0, mask = 1; x < 26; x++, mask <<= 1) {
++	if (drvmap & mask)
++	  {
++	    sprintf(buffer_ptr, "[%c:]", x + 'A');
++	    sent->entries[sent->entry_count].entry_name = buffer_ptr;
++	    sent->entries[sent->entry_count].is_dir = 1;
++	    buffer_ptr += 5;
++	    sent->entry_count++;
++	  }
++      }
++  }
++#endif
++
+   return sent;
+ }
+ 
+@@ -2153,6 +2344,26 @@
+ 	  return TRUE;
+ 	}
+ 
++#ifdef __EMX__
++      /* x:/.. = x:/ */
++      if(length == 5 && cmpl_dir->fullname[1] == ':')
++	{
++	  cmpl_dir->fullname[3] = '\0';
++	  cmpl_dir->fullname_len = 3;
++	  return TRUE;
++	}
++#endif
++
++#ifdef __EMX__
++      /* x:/../ = x:/ */
++      if(length == 6 && cmpl_dir->fullname[1] == ':')
++	{
++	  cmpl_dir->fullname[3] = '\0';
++	  cmpl_dir->fullname_len = 3;
++	  return TRUE;
++	}
++#endif
++
+       if(stat(cmpl_dir->fullname, &sbuf) < 0)
+ 	{
+ 	  cmpl_errno = errno;
+@@ -2351,7 +2562,12 @@
+ {
+   gint diff = 0;
+ 
++#ifndef __EMX__
+   while(*pat && *text && *text == *pat)
++#else
++  /* case insensitive in os/2 */
++  while(*pat && *text && tolower(*text) == tolower(*pat))
++#endif
+     {
+       pat += 1;
+       text += 1;
+@@ -2519,6 +2735,9 @@
+ attempt_file_completion(CompletionState *cmpl_state)
+ {
+   gchar *pat_buf, *first_slash;
++#ifdef __EMX__
++  gchar *tmp;
++#endif
+   CompletionDir *dir = cmpl_state->active_completion_dir;
+ 
+   dir->cmpl_index += 1;
+@@ -2617,6 +2836,11 @@
+ 		 FNMATCH_FLAGS) != FNM_NOMATCH);
+ 
+       cmpl_state->the_completion.is_directory = dir->sent->entries[dir->cmpl_index].is_dir;
++#ifdef __EMX__
++      tmp = dir->sent->entries[dir->cmpl_index].entry_name;
++      /* don't append "/" for [x:] */
++      if(tmp[0] != '[' || tmp[2] != ':' || tmp[3] != ']')
++#endif
+       if(dir->sent->entries[dir->cmpl_index].is_dir)
+ 	append_completion_text("/", cmpl_state);
+ 
+@@ -2697,15 +2921,27 @@
+ static gint
+ compare_user_dir(const void* a, const void* b)
+ {
++#ifndef __EMX__
+   return strcmp((((CompletionUserDir*)a))->login,
+ 		(((CompletionUserDir*)b))->login);
++#else
++  /* case insensitive in os/2 */
++  return stricmp((((CompletionUserDir*)a))->login,
++		(((CompletionUserDir*)b))->login);
++#endif
+ }
+ 
+ static gint
+ compare_cmpl_dir(const void* a, const void* b)
+ {
++#ifndef __EMX__
+   return strcmp((((CompletionDirEntry*)a))->entry_name,
+ 		(((CompletionDirEntry*)b))->entry_name);
++#else
++  /* case insensitive in os/2 */
++  return stricmp((((CompletionDirEntry*)a))->entry_name,
++		(((CompletionDirEntry*)b))->entry_name);
++#endif
+ }
+ 
+ static gint
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkitemfactory.c gtk+-1.2.2/gtk/gtkitemfactory.c
+--- gtk+-1.2.2.orig/gtk/gtkitemfactory.c	Sun Mar 21 15:07:04 1999
++++ gtk+-1.2.2/gtk/gtkitemfactory.c	Mon Apr 19 15:15:14 1999
+@@ -1624,7 +1624,11 @@
+   if (!S_ISREG (g_scanner_stat_mode (file_name)))
+     return;
+ 
++#ifndef __EMX__
+   fd = open (file_name, O_RDONLY);
++#else
++  fd = open (file_name, O_RDONLY | O_TEXT);
++#endif
+   if (fd < 0)
+     return;
+ 
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkmain.c gtk+-1.2.2/gtk/gtkmain.c
+--- gtk+-1.2.2.orig/gtk/gtkmain.c	Thu Feb 25 06:04:00 1999
++++ gtk+-1.2.2/gtk/gtkmain.c	Mon Apr 19 15:15:14 1999
+@@ -217,7 +217,11 @@
+     {
+       gchar **modules, **as;
+ 
++#ifndef __EMX__
+       modules = g_strsplit (env_string, ":", -1);
++#else
++      modules = g_strsplit (env_string, ";", -1);
++#endif
+       for (as = modules; *as; as++)
+ 	{
+ 	  if (**as)
+@@ -334,6 +338,7 @@
+       
+       module_name = slist->data;
+       slist->data = NULL;
++#ifndef __EMX__
+       if (!(module_name[0] == '/' ||
+ 	    (module_name[0] == 'l' &&
+ 	     module_name[1] == 'i' &&
+@@ -344,6 +349,18 @@
+ 	  module_name = g_strconcat ("lib", module_name, ".so", NULL);
+ 	  g_free (old);
+ 	}
++#else
++      {
++	gchar *suffix = strrchr(module_name, '.');
++	if (!suffix || stricmp(suffix, ".dll"))
++	  {
++	    gchar *old = module_name;
++	  
++	    module_name = g_strconcat (module_name, ".dll", NULL);
++	    g_free (old);
++	  }
++      }
++#endif
+       if (g_module_supported ())
+ 	{
+ 	  module = g_module_open (module_name, G_MODULE_BIND_LAZY);
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkos2.def.in gtk+-1.2.2/gtk/gtkos2.def.in
+--- gtk+-1.2.2.orig/gtk/gtkos2.def.in	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gtk/gtkos2.def.in	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,1405 @@
++LIBRARY @dllname@
++DESCRIPTION "@dllname@.dll v@version@ for XFree86/OS2"
++CODE PRELOAD
++DATA MULTIPLE NONSHARED
++STACKSIZE 131072
++EXPORTS
++  "GTK_TYPE_ACCEL_FLAGS" @1
++  "GTK_TYPE_ACCEL_GROUP" @2
++  "GTK_TYPE_ANCHOR_TYPE" @3
++  "GTK_TYPE_ARG_FLAGS" @4
++  "GTK_TYPE_ARROW_TYPE" @5
++  "GTK_TYPE_ATTACH_OPTIONS" @6
++  "GTK_TYPE_BUTTON_ACTION" @7
++  "GTK_TYPE_BUTTON_BOX_STYLE" @8
++  "GTK_TYPE_CALENDAR_DISPLAY_OPTIONS" @9
++  "GTK_TYPE_CELL_TYPE" @10
++  "GTK_TYPE_CLIST_DRAG_POS" @11
++  "GTK_TYPE_CORNER_TYPE" @12
++  "GTK_TYPE_CTREE_EXPANDER_STYLE" @13
++  "GTK_TYPE_CTREE_EXPANSION_TYPE" @14
++  "GTK_TYPE_CTREE_LINE_STYLE" @15
++  "GTK_TYPE_CTREE_NODE" @16
++  "GTK_TYPE_CTREE_POS" @17
++  "GTK_TYPE_CURVE_TYPE" @18
++  "GTK_TYPE_DEBUG_FLAG" @19
++  "GTK_TYPE_DEST_DEFAULTS" @20
++  "GTK_TYPE_DIRECTION_TYPE" @21
++  "GTK_TYPE_FONT_FILTER_TYPE" @22
++  "GTK_TYPE_FONT_METRIC_TYPE" @23
++  "GTK_TYPE_FONT_TYPE" @24
++  "GTK_TYPE_FUNDAMENTAL_TYPE" @25
++  "GTK_TYPE_GDK_AXIS_USE" @26
++  "GTK_TYPE_GDK_BYTE_ORDER" @27
++  "GTK_TYPE_GDK_CAP_STYLE" @28
++  "GTK_TYPE_GDK_COLOR" @29
++  "GTK_TYPE_GDK_COLORMAP" @30
++  "GTK_TYPE_GDK_COLOR_CONTEXT_MODE" @31
++  "GTK_TYPE_GDK_CROSSING_MODE" @32
++  "GTK_TYPE_GDK_CURSOR_TYPE" @33
++  "GTK_TYPE_GDK_DRAG_ACTION" @34
++  "GTK_TYPE_GDK_DRAG_CONTEXT" @35
++  "GTK_TYPE_GDK_DRAG_PROTOCOL" @36
++  "GTK_TYPE_GDK_EVENT" @37
++  "GTK_TYPE_GDK_EVENT_MASK" @38
++  "GTK_TYPE_GDK_EVENT_TYPE" @39
++  "GTK_TYPE_GDK_EXTENSION_MODE" @40
++  "GTK_TYPE_GDK_FILL" @41
++  "GTK_TYPE_GDK_FILL_RULE" @42
++  "GTK_TYPE_GDK_FILTER_RETURN" @43
++  "GTK_TYPE_GDK_FONT" @44
++  "GTK_TYPE_GDK_FONT_TYPE" @45
++  "GTK_TYPE_GDK_FUNCTION" @46
++  "GTK_TYPE_GDK_GC_VALUES_MASK" @47
++  "GTK_TYPE_GDK_IC_ATTRIBUTES_TYPE" @48
++  "GTK_TYPE_GDK_IMAGE_TYPE" @49
++  "GTK_TYPE_GDK_IM_STYLE" @50
++  "GTK_TYPE_GDK_INPUT_CONDITION" @51
++  "GTK_TYPE_GDK_INPUT_MODE" @52
++  "GTK_TYPE_GDK_INPUT_SOURCE" @53
++  "GTK_TYPE_GDK_JOIN_STYLE" @54
++  "GTK_TYPE_GDK_LINE_STYLE" @55
++  "GTK_TYPE_GDK_MODIFIER_TYPE" @56
++  "GTK_TYPE_GDK_NOTIFY_TYPE" @57
++  "GTK_TYPE_GDK_OVERLAP_TYPE" @58
++  "GTK_TYPE_GDK_PROPERTY_STATE" @59
++  "GTK_TYPE_GDK_PROP_MODE" @60
++  "GTK_TYPE_GDK_RGB_DITHER" @61
++  "GTK_TYPE_GDK_SELECTION" @62
++  "GTK_TYPE_GDK_SELECTION_TYPE" @63
++  "GTK_TYPE_GDK_STATUS" @64
++  "GTK_TYPE_GDK_SUBWINDOW_MODE" @65
++  "GTK_TYPE_GDK_TARGET" @66
++  "GTK_TYPE_GDK_VISIBILITY_STATE" @67
++  "GTK_TYPE_GDK_VISUAL" @68
++  "GTK_TYPE_GDK_VISUAL_TYPE" @69
++  "GTK_TYPE_GDK_WINDOW" @70
++  "GTK_TYPE_GDK_WINDOW_ATTRIBUTES_TYPE" @71
++  "GTK_TYPE_GDK_WINDOW_CLASS" @72
++  "GTK_TYPE_GDK_WINDOW_HINTS" @73
++  "GTK_TYPE_GDK_WINDOW_TYPE" @74
++  "GTK_TYPE_GDK_WM_DECORATION" @75
++  "GTK_TYPE_GDK_WM_FUNCTION" @76
++  "GTK_TYPE_JUSTIFICATION" @77
++  "GTK_TYPE_MATCH_TYPE" @78
++  "GTK_TYPE_MENU_DIRECTION_TYPE" @79
++  "GTK_TYPE_MENU_FACTORY_TYPE" @80
++  "GTK_TYPE_METRIC_TYPE" @81
++  "GTK_TYPE_OBJECT_FLAGS" @82
++  "GTK_TYPE_ORIENTATION" @83
++  "GTK_TYPE_PACKER_OPTIONS" @84
++  "GTK_TYPE_PACK_TYPE" @85
++  "GTK_TYPE_PATH_PRIORITY_TYPE" @86
++  "GTK_TYPE_PATH_TYPE" @87
++  "GTK_TYPE_POLICY_TYPE" @88
++  "GTK_TYPE_POSITION_TYPE" @89
++  "GTK_TYPE_PREVIEW_TYPE" @90
++  "GTK_TYPE_PRIVATE_FLAGS" @91
++  "GTK_TYPE_PROGRESS_BAR_ORIENTATION" @92
++  "GTK_TYPE_PROGRESS_BAR_STYLE" @93
++  "GTK_TYPE_RC_FLAGS" @94
++  "GTK_TYPE_RC_TOKEN_TYPE" @95
++  "GTK_TYPE_RELIEF_STYLE" @96
++  "GTK_TYPE_RESIZE_MODE" @97
++  "GTK_TYPE_SCROLL_TYPE" @98
++  "GTK_TYPE_SELECTION_DATA" @99
++  "GTK_TYPE_SELECTION_MODE" @100
++  "GTK_TYPE_SHADOW_TYPE" @101
++  "GTK_TYPE_SIDE_TYPE" @102
++  "GTK_TYPE_SIGNAL_RUN_TYPE" @103
++  "GTK_TYPE_SORT_TYPE" @104
++  "GTK_TYPE_SPIN_BUTTON_UPDATE_POLICY" @105
++  "GTK_TYPE_SPIN_TYPE" @106
++  "GTK_TYPE_STATE_TYPE" @107
++  "GTK_TYPE_STYLE" @108
++  "GTK_TYPE_SUBMENU_DIRECTION" @109
++  "GTK_TYPE_SUBMENU_PLACEMENT" @110
++  "GTK_TYPE_TARGET_FLAGS" @111
++  "GTK_TYPE_TOOLBAR_CHILD_TYPE" @112
++  "GTK_TYPE_TOOLBAR_SPACE_STYLE" @113
++  "GTK_TYPE_TOOLBAR_STYLE" @114
++  "GTK_TYPE_TREE_VIEW_MODE" @115
++  "GTK_TYPE_TROUGH_TYPE" @116
++  "GTK_TYPE_UPDATE_TYPE" @117
++  "GTK_TYPE_VISIBILITY" @118
++  "GTK_TYPE_WIDGET_FLAGS" @119
++  "GTK_TYPE_WINDOW_POSITION" @120
++  "GTK_TYPE_WINDOW_TYPE" @121
++  "gtk_accel_group_activate" @122
++  "gtk_accel_group_add" @123
++  "gtk_accel_group_attach" @124
++  "gtk_accel_group_create_add" @125
++  "gtk_accel_group_create_remove" @126
++  "gtk_accel_group_detach" @127
++  "gtk_accel_group_entries_from_object" @128
++  "gtk_accel_group_get_default" @129
++  "gtk_accel_group_get_entry" @130
++  "gtk_accel_group_handle_add" @131
++  "gtk_accel_group_handle_remove" @132
++  "gtk_accel_group_lock" @133
++  "gtk_accel_group_lock_entry" @134
++  "gtk_accel_group_new" @135
++  "gtk_accel_group_ref" @136
++  "gtk_accel_group_remove" @137
++  "gtk_accel_group_unlock" @138
++  "gtk_accel_group_unlock_entry" @139
++  "gtk_accel_group_unref" @140
++  "gtk_accel_groups_activate" @141
++  "gtk_accel_groups_from_object" @142
++  "gtk_accel_label_get_accel_width" @143
++  "gtk_accel_label_get_type" @144
++  "gtk_accel_label_new" @145
++  "gtk_accel_label_refetch" @146
++  "gtk_accel_label_set_accel_widget" @147
++  "gtk_accelerator_get_default_mod_mask" @148
++  "gtk_accelerator_name" @149
++  "gtk_accelerator_parse" @150
++  "gtk_accelerator_set_default_mod_mask" @151
++  "gtk_accelerator_valid" @152
++  "gtk_adjustment_changed" @153
++  "gtk_adjustment_clamp_page" @154
++  "gtk_adjustment_get_type" @155
++  "gtk_adjustment_new" @156
++  "gtk_adjustment_set_value" @157
++  "gtk_adjustment_value_changed" @158
++  "gtk_alignment_get_type" @159
++  "gtk_alignment_new" @160
++  "gtk_alignment_set" @161
++  "gtk_arg_copy" @162
++  "gtk_arg_free" @163
++  "gtk_arg_get_info" @164
++  "gtk_arg_info_equal" @165
++  "gtk_arg_info_hash" @166
++  "gtk_arg_name_strip_type" @167
++  "gtk_arg_new" @168
++  "gtk_arg_type_new_static" @169
++  "gtk_args_collect" @170
++  "gtk_args_collect_cleanup" @171
++  "gtk_args_query" @172
++  "gtk_arrow_get_type" @173
++  "gtk_arrow_new" @174
++  "gtk_arrow_set" @175
++  "gtk_aspect_frame_get_type" @176
++  "gtk_aspect_frame_new" @177
++  "gtk_aspect_frame_set" @178
++  "gtk_bin_get_type" @179
++  "gtk_binary_age" @180
++  "gtk_binding_entry_add_signal" @181
++  "gtk_binding_entry_add_signall" @182
++  "gtk_binding_entry_clear" @183
++  "gtk_binding_entry_remove" @184
++  "gtk_binding_parse_binding" @185
++  "gtk_binding_set_activate" @186
++  "gtk_binding_set_add_path" @187
++  "gtk_binding_set_by_class" @188
++  "gtk_binding_set_find" @189
++  "gtk_binding_set_new" @190
++  "gtk_bindings_activate" @191
++  "gtk_box_get_type" @192
++  "gtk_box_pack_end" @193
++  "gtk_box_pack_end_defaults" @194
++  "gtk_box_pack_start" @195
++  "gtk_box_pack_start_defaults" @196
++  "gtk_box_query_child_packing" @197
++  "gtk_box_reorder_child" @198
++  "gtk_box_set_child_packing" @199
++  "gtk_box_set_homogeneous" @200
++  "gtk_box_set_spacing" @201
++  "gtk_button_box_child_requisition" @202
++  "gtk_button_box_get_child_ipadding" @203
++  "gtk_button_box_get_child_ipadding_default" @204
++  "gtk_button_box_get_child_size" @205
++  "gtk_button_box_get_child_size_default" @206
++  "gtk_button_box_get_layout" @207
++  "gtk_button_box_get_spacing" @208
++  "gtk_button_box_get_type" @209
++  "gtk_button_box_set_child_ipadding" @210
++  "gtk_button_box_set_child_ipadding_default" @211
++  "gtk_button_box_set_child_size" @212
++  "gtk_button_box_set_child_size_default" @213
++  "gtk_button_box_set_layout" @214
++  "gtk_button_box_set_spacing" @215
++  "gtk_button_clicked" @216
++  "gtk_button_enter" @217
++  "gtk_button_get_relief" @218
++  "gtk_button_get_type" @219
++  "gtk_button_leave" @220
++  "gtk_button_new" @221
++  "gtk_button_new_with_label" @222
++  "gtk_button_pressed" @223
++  "gtk_button_released" @224
++  "gtk_button_set_relief" @225
++  "gtk_calendar_clear_marks" @226
++  "gtk_calendar_display_options" @227
++  "gtk_calendar_freeze" @228
++  "gtk_calendar_get_date" @229
++  "gtk_calendar_get_type" @230
++  "gtk_calendar_mark_day" @231
++  "gtk_calendar_new" @232
++  "gtk_calendar_select_day" @233
++  "gtk_calendar_select_month" @234
++  "gtk_calendar_thaw" @235
++  "gtk_calendar_unmark_day" @236
++  "gtk_check_button_get_type" @237
++  "gtk_check_button_new" @238
++  "gtk_check_button_new_with_label" @239
++  "gtk_check_menu_item_get_type" @240
++  "gtk_check_menu_item_new" @241
++  "gtk_check_menu_item_new_with_label" @242
++  "gtk_check_menu_item_set_active" @243
++  "gtk_check_menu_item_set_show_toggle" @244
++  "gtk_check_menu_item_toggled" @245
++  "gtk_check_version" @246
++  "gtk_clist_append" @247
++  "gtk_clist_clear" @248
++  "gtk_clist_column_title_active" @249
++  "gtk_clist_column_title_passive" @250
++  "gtk_clist_column_titles_active" @251
++  "gtk_clist_column_titles_hide" @252
++  "gtk_clist_column_titles_passive" @253
++  "gtk_clist_column_titles_show" @254
++  "gtk_clist_columns_autosize" @255
++  "gtk_clist_construct" @256
++  "gtk_clist_find_row_from_data" @257
++  "gtk_clist_freeze" @258
++  "gtk_clist_get_cell_style" @259
++  "gtk_clist_get_cell_type" @260
++  "gtk_clist_get_column_title" @261
++  "gtk_clist_get_column_widget" @262
++  "gtk_clist_get_hadjustment" @263
++  "gtk_clist_get_pixmap" @264
++  "gtk_clist_get_pixtext" @265
++  "gtk_clist_get_row_data" @266
++  "gtk_clist_get_row_style" @267
++  "gtk_clist_get_selectable" @268
++  "gtk_clist_get_selection_info" @269
++  "gtk_clist_get_text" @270
++  "gtk_clist_get_type" @271
++  "gtk_clist_get_vadjustment" @272
++  "gtk_clist_insert" @273
++  "gtk_clist_moveto" @274
++  "gtk_clist_new" @275
++  "gtk_clist_new_with_titles" @276
++  "gtk_clist_optimal_column_width" @277
++  "gtk_clist_prepend" @278
++  "gtk_clist_remove" @279
++  "gtk_clist_row_is_visible" @280
++  "gtk_clist_row_move" @281
++  "gtk_clist_select_all" @282
++  "gtk_clist_select_row" @283
++  "gtk_clist_set_auto_sort" @284
++  "gtk_clist_set_background" @285
++  "gtk_clist_set_button_actions" @286
++  "gtk_clist_set_cell_style" @287
++  "gtk_clist_set_column_auto_resize" @288
++  "gtk_clist_set_column_justification" @289
++  "gtk_clist_set_column_max_width" @290
++  "gtk_clist_set_column_min_width" @291
++  "gtk_clist_set_column_resizeable" @292
++  "gtk_clist_set_column_title" @293
++  "gtk_clist_set_column_visibility" @294
++  "gtk_clist_set_column_widget" @295
++  "gtk_clist_set_column_width" @296
++  "gtk_clist_set_compare_func" @297
++  "gtk_clist_set_foreground" @298
++  "gtk_clist_set_hadjustment" @299
++  "gtk_clist_set_pixmap" @300
++  "gtk_clist_set_pixtext" @301
++  "gtk_clist_set_reorderable" @302
++  "gtk_clist_set_row_data" @303
++  "gtk_clist_set_row_data_full" @304
++  "gtk_clist_set_row_height" @305
++  "gtk_clist_set_row_style" @306
++  "gtk_clist_set_selectable" @307
++  "gtk_clist_set_selection_mode" @308
++  "gtk_clist_set_shadow_type" @309
++  "gtk_clist_set_shift" @310
++  "gtk_clist_set_sort_column" @311
++  "gtk_clist_set_sort_type" @312
++  "gtk_clist_set_text" @313
++  "gtk_clist_set_use_drag_icons" @314
++  "gtk_clist_set_vadjustment" @315
++  "gtk_clist_sort" @316
++  "gtk_clist_swap_rows" @317
++  "gtk_clist_thaw" @318
++  "gtk_clist_undo_selection" @319
++  "gtk_clist_unselect_all" @320
++  "gtk_clist_unselect_row" @321
++  "gtk_color_selection_dialog_get_type" @322
++  "gtk_color_selection_dialog_new" @323
++  "gtk_color_selection_get_color" @324
++  "gtk_color_selection_get_type" @325
++  "gtk_color_selection_new" @326
++  "gtk_color_selection_set_color" @327
++  "gtk_color_selection_set_opacity" @328
++  "gtk_color_selection_set_update_policy" @329
++  "gtk_combo_disable_activate" @330
++  "gtk_combo_get_type" @331
++  "gtk_combo_new" @332
++  "gtk_combo_set_case_sensitive" @333
++  "gtk_combo_set_item_string" @334
++  "gtk_combo_set_popdown_strings" @335
++  "gtk_combo_set_use_arrows" @336
++  "gtk_combo_set_use_arrows_always" @337
++  "gtk_combo_set_value_in_list" @338
++  "gtk_combo_string_key" @339
++  "gtk_container_add" @340
++  "gtk_container_add_child_arg_type" @341
++  "gtk_container_add_with_args" @342
++  "gtk_container_addv" @343
++  "gtk_container_arg_get" @344
++  "gtk_container_arg_set" @345
++  "gtk_container_check_resize" @346
++  "gtk_container_child_arg_get_info" @347
++  "gtk_container_child_args_collect" @348
++  "gtk_container_child_composite_name" @349
++  "gtk_container_child_getv" @350
++  "gtk_container_child_set" @351
++  "gtk_container_child_setv" @352
++  "gtk_container_child_type" @353
++  "gtk_container_children" @354
++  "gtk_container_clear_resize_widgets" @355
++  "gtk_container_focus" @356
++  "gtk_container_forall" @357
++  "gtk_container_foreach" @358
++  "gtk_container_foreach_full" @359
++  "gtk_container_get_toplevels" @360
++  "gtk_container_get_type" @361
++  "gtk_container_query_child_args" @362
++  "gtk_container_queue_resize" @363
++  "gtk_container_register_toplevel" @364
++  "gtk_container_remove" @365
++  "gtk_container_resize_children" @366
++  "gtk_container_set_border_width" @367
++  "gtk_container_set_focus_child" @368
++  "gtk_container_set_focus_hadjustment" @369
++  "gtk_container_set_focus_vadjustment" @370
++  "gtk_container_set_resize_mode" @371
++  "gtk_container_unregister_toplevel" @372
++  "gtk_ctree_collapse" @373
++  "gtk_ctree_collapse_recursive" @374
++  "gtk_ctree_collapse_to_depth" @375
++  "gtk_ctree_construct" @376
++  "gtk_ctree_expand" @377
++  "gtk_ctree_expand_recursive" @378
++  "gtk_ctree_expand_to_depth" @379
++  "gtk_ctree_export_to_gnode" @380
++  "gtk_ctree_find" @381
++  "gtk_ctree_find_all_by_row_data" @382
++  "gtk_ctree_find_all_by_row_data_custom" @383
++  "gtk_ctree_find_by_row_data" @384
++  "gtk_ctree_find_by_row_data_custom" @385
++  "gtk_ctree_find_node_ptr" @386
++  "gtk_ctree_get_node_info" @387
++  "gtk_ctree_get_type" @388
++  "gtk_ctree_insert_gnode" @389
++  "gtk_ctree_insert_node" @390
++  "gtk_ctree_is_ancestor" @391
++  "gtk_ctree_is_hot_spot" @392
++  "gtk_ctree_is_viewable" @393
++  "gtk_ctree_last" @394
++  "gtk_ctree_move" @395
++  "gtk_ctree_new" @396
++  "gtk_ctree_new_with_titles" @397
++  "gtk_ctree_node_get_cell_style" @398
++  "gtk_ctree_node_get_cell_type" @399
++  "gtk_ctree_node_get_pixmap" @400
++  "gtk_ctree_node_get_pixtext" @401
++  "gtk_ctree_node_get_row_data" @402
++  "gtk_ctree_node_get_row_style" @403
++  "gtk_ctree_node_get_selectable" @404
++  "gtk_ctree_node_get_text" @405
++  "gtk_ctree_node_is_visible" @406
++  "gtk_ctree_node_moveto" @407
++  "gtk_ctree_node_nth" @408
++  "gtk_ctree_node_set_background" @409
++  "gtk_ctree_node_set_cell_style" @410
++  "gtk_ctree_node_set_foreground" @411
++  "gtk_ctree_node_set_pixmap" @412
++  "gtk_ctree_node_set_pixtext" @413
++  "gtk_ctree_node_set_row_data" @414
++  "gtk_ctree_node_set_row_data_full" @415
++  "gtk_ctree_node_set_row_style" @416
++  "gtk_ctree_node_set_selectable" @417
++  "gtk_ctree_node_set_shift" @418
++  "gtk_ctree_node_set_text" @419
++  "gtk_ctree_post_recursive" @420
++  "gtk_ctree_post_recursive_to_depth" @421
++  "gtk_ctree_pre_recursive" @422
++  "gtk_ctree_pre_recursive_to_depth" @423
++  "gtk_ctree_real_select_recursive" @424
++  "gtk_ctree_remove_node" @425
++  "gtk_ctree_select" @426
++  "gtk_ctree_select_recursive" @427
++  "gtk_ctree_set_drag_compare_func" @428
++  "gtk_ctree_set_expander_style" @429
++  "gtk_ctree_set_indent" @430
++  "gtk_ctree_set_line_style" @431
++  "gtk_ctree_set_node_info" @432
++  "gtk_ctree_set_show_stub" @433
++  "gtk_ctree_set_spacing" @434
++  "gtk_ctree_sort_node" @435
++  "gtk_ctree_sort_recursive" @436
++  "gtk_ctree_toggle_expansion" @437
++  "gtk_ctree_toggle_expansion_recursive" @438
++  "gtk_ctree_unselect" @439
++  "gtk_ctree_unselect_recursive" @440
++  "gtk_curve_get_type" @441
++  "gtk_curve_get_vector" @442
++  "gtk_curve_new" @443
++  "gtk_curve_reset" @444
++  "gtk_curve_set_curve_type" @445
++  "gtk_curve_set_gamma" @446
++  "gtk_curve_set_range" @447
++  "gtk_curve_set_vector" @448
++  "gtk_data_get_type" @449
++  "gtk_debug_flags" @450
++  "gtk_dialog_get_type" @451
++  "gtk_dialog_new" @452
++  "gtk_drag_begin" @453
++  "gtk_drag_dest_handle_event" @454
++  "gtk_drag_dest_set" @455
++  "gtk_drag_dest_set_proxy" @456
++  "gtk_drag_dest_unset" @457
++  "gtk_drag_finish" @458
++  "gtk_drag_get_data" @459
++  "gtk_drag_get_source_widget" @460
++  "gtk_drag_highlight" @461
++  "gtk_drag_set_default_icon" @462
++  "gtk_drag_set_icon_default" @463
++  "gtk_drag_set_icon_pixmap" @464
++  "gtk_drag_set_icon_widget" @465
++  "gtk_drag_source_handle_event" @466
++  "gtk_drag_source_set" @467
++  "gtk_drag_source_set_icon" @468
++  "gtk_drag_source_unset" @469
++  "gtk_drag_unhighlight" @470
++  "gtk_draw_arrow" @471
++  "gtk_draw_box" @472
++  "gtk_draw_box_gap" @473
++  "gtk_draw_check" @474
++  "gtk_draw_cross" @475
++  "gtk_draw_diamond" @476
++  "gtk_draw_extension" @477
++  "gtk_draw_flat_box" @478
++  "gtk_draw_focus" @479
++  "gtk_draw_handle" @480
++  "gtk_draw_hline" @481
++  "gtk_draw_option" @482
++  "gtk_draw_oval" @483
++  "gtk_draw_polygon" @484
++  "gtk_draw_ramp" @485
++  "gtk_draw_shadow" @486
++  "gtk_draw_shadow_gap" @487
++  "gtk_draw_slider" @488
++  "gtk_draw_string" @489
++  "gtk_draw_tab" @490
++  "gtk_draw_vline" @491
++  "gtk_drawing_area_get_type" @492
++  "gtk_drawing_area_new" @493
++  "gtk_drawing_area_size" @494
++  "gtk_editable_changed" @495
++  "gtk_editable_claim_selection" @496
++  "gtk_editable_copy_clipboard" @497
++  "gtk_editable_cut_clipboard" @498
++  "gtk_editable_delete_selection" @499
++  "gtk_editable_delete_text" @500
++  "gtk_editable_get_chars" @501
++  "gtk_editable_get_position" @502
++  "gtk_editable_get_type" @503
++  "gtk_editable_insert_text" @504
++  "gtk_editable_paste_clipboard" @505
++  "gtk_editable_select_region" @506
++  "gtk_editable_set_editable" @507
++  "gtk_editable_set_position" @508
++  "gtk_entry_append_text" @509
++  "gtk_entry_get_text" @510
++  "gtk_entry_get_type" @511
++  "gtk_entry_new" @512
++  "gtk_entry_new_with_max_length" @513
++  "gtk_entry_prepend_text" @514
++  "gtk_entry_select_region" @515
++  "gtk_entry_set_editable" @516
++  "gtk_entry_set_max_length" @517
++  "gtk_entry_set_position" @518
++  "gtk_entry_set_text" @519
++  "gtk_entry_set_visibility" @520
++  "gtk_event_box_get_type" @521
++  "gtk_event_box_new" @522
++  "gtk_events_pending" @523
++  "gtk_exit" @524
++  "gtk_false" @525
++  "gtk_file_selection_complete" @526
++  "gtk_file_selection_get_filename" @527
++  "gtk_file_selection_get_type" @528
++  "gtk_file_selection_hide_fileop_buttons" @529
++  "gtk_file_selection_new" @530
++  "gtk_file_selection_set_filename" @531
++  "gtk_file_selection_show_fileop_buttons" @532
++  "gtk_fixed_get_type" @533
++  "gtk_fixed_move" @534
++  "gtk_fixed_new" @535
++  "gtk_fixed_put" @536
++  "gtk_font_selection_dialog_get_font" @537
++  "gtk_font_selection_dialog_get_font_name" @538
++  "gtk_font_selection_dialog_get_preview_text" @539
++  "gtk_font_selection_dialog_get_type" @540
++  "gtk_font_selection_dialog_new" @541
++  "gtk_font_selection_dialog_set_filter" @542
++  "gtk_font_selection_dialog_set_font_name" @543
++  "gtk_font_selection_dialog_set_preview_text" @544
++  "gtk_font_selection_get_font" @545
++  "gtk_font_selection_get_font_name" @546
++  "gtk_font_selection_get_preview_text" @547
++  "gtk_font_selection_get_type" @548
++  "gtk_font_selection_new" @549
++  "gtk_font_selection_set_filter" @550
++  "gtk_font_selection_set_font_name" @551
++  "gtk_font_selection_set_preview_text" @552
++  "gtk_frame_get_type" @553
++  "gtk_frame_new" @554
++  "gtk_frame_set_label" @555
++  "gtk_frame_set_label_align" @556
++  "gtk_frame_set_shadow_type" @557
++  "gtk_gamma_curve_get_type" @558
++  "gtk_gamma_curve_new" @559
++  "gtk_gc_get" @560
++  "gtk_gc_release" @561
++  "gtk_get_current_event" @562
++  "gtk_get_event_widget" @563
++  "gtk_grab_add" @564
++  "gtk_grab_get_current" @565
++  "gtk_grab_remove" @566
++  "gtk_handle_box_get_type" @567
++  "gtk_handle_box_new" @568
++  "gtk_handle_box_set_shadow_type" @569
++  "gtk_hbox_get_type" @570
++  "gtk_hbox_new" @571
++  "gtk_hbutton_box_get_layout_default" @572
++  "gtk_hbutton_box_get_spacing_default" @573
++  "gtk_hbutton_box_get_type" @574
++  "gtk_hbutton_box_new" @575
++  "gtk_hbutton_box_set_layout_default" @576
++  "gtk_hbutton_box_set_spacing_default" @577
++  "gtk_hpaned_get_type" @578
++  "gtk_hpaned_new" @579
++  "gtk_hruler_get_type" @580
++  "gtk_hruler_new" @581
++  "gtk_hscale_get_type" @582
++  "gtk_hscale_new" @583
++  "gtk_hscrollbar_get_type" @584
++  "gtk_hscrollbar_new" @585
++  "gtk_hseparator_get_type" @586
++  "gtk_hseparator_new" @587
++  "gtk_identifier_get_type" @588
++  "gtk_idle_add" @589
++  "gtk_idle_add_full" @590
++  "gtk_idle_add_priority" @591
++  "gtk_idle_remove" @592
++  "gtk_idle_remove_by_data" @593
++  "gtk_image_get" @594
++  "gtk_image_get_type" @595
++  "gtk_image_new" @596
++  "gtk_image_set" @597
++  "gtk_init" @598
++  "gtk_init_add" @599
++  "gtk_input_add_full" @600
++  "gtk_input_dialog_get_type" @601
++  "gtk_input_dialog_new" @602
++  "gtk_input_remove" @603
++  "gtk_interface_age" @604
++  "gtk_invisible_get_type" @605
++  "gtk_invisible_new" @606
++  "gtk_item_deselect" @607
++  "gtk_item_factories_path_delete" @608
++  "gtk_item_factory_construct" @609
++  "gtk_item_factory_create_item" @610
++  "gtk_item_factory_create_items" @611
++  "gtk_item_factory_create_items_ac" @612
++  "gtk_item_factory_create_menu_entries" @613
++  "gtk_item_factory_delete_entries" @614
++  "gtk_item_factory_delete_entry" @615
++  "gtk_item_factory_delete_item" @616
++  "gtk_item_factory_dump_items" @617
++  "gtk_item_factory_dump_rc" @618
++  "gtk_item_factory_from_path" @619
++  "gtk_item_factory_from_widget" @620
++  "gtk_item_factory_get_type" @621
++  "gtk_item_factory_get_widget" @622
++  "gtk_item_factory_get_widget_by_action" @623
++  "gtk_item_factory_new" @624
++  "gtk_item_factory_parse_rc" @625
++  "gtk_item_factory_parse_rc_scanner" @626
++  "gtk_item_factory_parse_rc_string" @627
++  "gtk_item_factory_path_from_widget" @628
++  "gtk_item_factory_popup" @629
++  "gtk_item_factory_popup_data" @630
++  "gtk_item_factory_popup_data_from_widget" @631
++  "gtk_item_factory_popup_with_data" @632
++  "gtk_item_factory_print_func" @633
++  "gtk_item_factory_set_translate_func" @634
++  "gtk_item_get_type" @635
++  "gtk_item_select" @636
++  "gtk_item_toggle" @637
++  "gtk_key_snooper_install" @638
++  "gtk_key_snooper_remove" @639
++  "gtk_label_get" @640
++  "gtk_label_get_type" @641
++  "gtk_label_new" @642
++  "gtk_label_parse_uline" @643
++  "gtk_label_set_justify" @644
++  "gtk_label_set_line_wrap" @645
++  "gtk_label_set_pattern" @646
++  "gtk_label_set_text" @647
++  "gtk_layout_freeze" @648
++  "gtk_layout_get_hadjustment" @649
++  "gtk_layout_get_type" @650
++  "gtk_layout_get_vadjustment" @651
++  "gtk_layout_move" @652
++  "gtk_layout_new" @653
++  "gtk_layout_put" @654
++  "gtk_layout_set_hadjustment" @655
++  "gtk_layout_set_size" @656
++  "gtk_layout_set_vadjustment" @657
++  "gtk_layout_thaw" @658
++  "gtk_list_append_items" @659
++  "gtk_list_child_position" @660
++  "gtk_list_clear_items" @661
++  "gtk_list_end_drag_selection" @662
++  "gtk_list_end_selection" @663
++  "gtk_list_extend_selection" @664
++  "gtk_list_get_type" @665
++  "gtk_list_insert_items" @666
++  "gtk_list_item_deselect" @667
++  "gtk_list_item_get_type" @668
++  "gtk_list_item_new" @669
++  "gtk_list_item_new_with_label" @670
++  "gtk_list_item_select" @671
++  "gtk_list_new" @672
++  "gtk_list_prepend_items" @673
++  "gtk_list_remove_items" @674
++  "gtk_list_remove_items_no_unref" @675
++  "gtk_list_scroll_horizontal" @676
++  "gtk_list_scroll_vertical" @677
++  "gtk_list_select_all" @678
++  "gtk_list_select_child" @679
++  "gtk_list_select_item" @680
++  "gtk_list_set_selection_mode" @681
++  "gtk_list_start_selection" @682
++  "gtk_list_toggle_add_mode" @683
++  "gtk_list_toggle_focus_row" @684
++  "gtk_list_toggle_row" @685
++  "gtk_list_undo_selection" @686
++  "gtk_list_unselect_all" @687
++  "gtk_list_unselect_child" @688
++  "gtk_list_unselect_item" @689
++  "gtk_main" @690
++  "gtk_main_do_event" @691
++  "gtk_main_iteration" @692
++  "gtk_main_iteration_do" @693
++  "gtk_main_level" @694
++  "gtk_main_quit" @695
++  "gtk_major_version" @696
++  "gtk_marshal_BOOL__NONE" @697
++  "gtk_marshal_BOOL__POINTER" @698
++  "gtk_marshal_BOOL__POINTER_INT_INT" @699
++  "gtk_marshal_BOOL__POINTER_INT_INT_INT" @700
++  "gtk_marshal_BOOL__POINTER_POINTER_INT_INT" @701
++  "gtk_marshal_BOOL__POINTER_POINTER_POINTER_POINTER" @702
++  "gtk_marshal_INT__INT" @703
++  "gtk_marshal_INT__POINTER" @704
++  "gtk_marshal_INT__POINTER_CHAR_CHAR" @705
++  "gtk_marshal_NONE__BOOL" @706
++  "gtk_marshal_NONE__C_CALLBACK" @707
++  "gtk_marshal_NONE__C_CALLBACK_C_CALLBACK" @708
++  "gtk_marshal_NONE__INT" @709
++  "gtk_marshal_NONE__INT_FLOAT" @710
++  "gtk_marshal_NONE__INT_FLOAT_BOOL" @711
++  "gtk_marshal_NONE__INT_INT" @712
++  "gtk_marshal_NONE__INT_INT_POINTER" @713
++  "gtk_marshal_NONE__INT_POINTER" @714
++  "gtk_marshal_NONE__INT_POINTER_INT_INT_INT" @715
++  "gtk_marshal_NONE__INT_POINTER_INT_INT_INT_POINTER" @716
++  "gtk_marshal_NONE__NONE" @717
++  "gtk_marshal_NONE__POINTER" @718
++  "gtk_marshal_NONE__POINTER_INT" @719
++  "gtk_marshal_NONE__POINTER_INT_INT" @720
++  "gtk_marshal_NONE__POINTER_INT_INT_POINTER_INT_INT" @721
++  "gtk_marshal_NONE__POINTER_INT_POINTER" @722
++  "gtk_marshal_NONE__POINTER_POINTER" @723
++  "gtk_marshal_NONE__POINTER_POINTER_INT_INT" @724
++  "gtk_marshal_NONE__POINTER_POINTER_POINTER" @725
++  "gtk_menu_append" @726
++  "gtk_menu_attach_to_widget" @727
++  "gtk_menu_bar_append" @728
++  "gtk_menu_bar_get_type" @729
++  "gtk_menu_bar_insert" @730
++  "gtk_menu_bar_new" @731
++  "gtk_menu_bar_prepend" @732
++  "gtk_menu_bar_set_shadow_type" @733
++  "gtk_menu_detach" @734
++  "gtk_menu_factory_add_entries" @735
++  "gtk_menu_factory_add_subfactory" @736
++  "gtk_menu_factory_destroy" @737
++  "gtk_menu_factory_find" @738
++  "gtk_menu_factory_new" @739
++  "gtk_menu_factory_remove_entries" @740
++  "gtk_menu_factory_remove_paths" @741
++  "gtk_menu_factory_remove_subfactory" @742
++  "gtk_menu_get_active" @743
++  "gtk_menu_get_attach_widget" @744
++  "gtk_menu_get_type" @745
++  "gtk_menu_insert" @746
++  "gtk_menu_item_activate" @747
++  "gtk_menu_item_configure" @748
++  "gtk_menu_item_deselect" @749
++  "gtk_menu_item_get_type" @750
++  "gtk_menu_item_new" @751
++  "gtk_menu_item_new_with_label" @752
++  "gtk_menu_item_remove_submenu" @753
++  "gtk_menu_item_right_justify" @754
++  "gtk_menu_item_select" @755
++  "gtk_menu_item_set_placement" @756
++  "gtk_menu_item_set_submenu" @757
++  "gtk_menu_new" @758
++  "gtk_menu_popdown" @759
++  "gtk_menu_popup" @760
++  "gtk_menu_prepend" @761
++  "gtk_menu_reposition" @762
++  "gtk_menu_set_accel_group" @763
++  "gtk_menu_set_active" @764
++  "gtk_menu_set_tearoff_state" @765
++  "gtk_menu_shell_activate_item" @766
++  "gtk_menu_shell_append" @767
++  "gtk_menu_shell_deactivate" @768
++  "gtk_menu_shell_get_type" @769
++  "gtk_menu_shell_insert" @770
++  "gtk_menu_shell_prepend" @771
++  "gtk_menu_shell_select_item" @772
++  "gtk_micro_version" @773
++  "gtk_minor_version" @774
++  "gtk_misc_get_type" @775
++  "gtk_misc_set_alignment" @776
++  "gtk_misc_set_padding" @777
++  "gtk_notebook_append_page" @778
++  "gtk_notebook_append_page_menu" @779
++  "gtk_notebook_get_current_page" @780
++  "gtk_notebook_get_menu_label" @781
++  "gtk_notebook_get_nth_page" @782
++  "gtk_notebook_get_tab_label" @783
++  "gtk_notebook_get_type" @784
++  "gtk_notebook_insert_page" @785
++  "gtk_notebook_insert_page_menu" @786
++  "gtk_notebook_new" @787
++  "gtk_notebook_next_page" @788
++  "gtk_notebook_page_num" @789
++  "gtk_notebook_popup_disable" @790
++  "gtk_notebook_popup_enable" @791
++  "gtk_notebook_prepend_page" @792
++  "gtk_notebook_prepend_page_menu" @793
++  "gtk_notebook_prev_page" @794
++  "gtk_notebook_query_tab_label_packing" @795
++  "gtk_notebook_remove_page" @796
++  "gtk_notebook_reorder_child" @797
++  "gtk_notebook_set_homogeneous_tabs" @798
++  "gtk_notebook_set_menu_label" @799
++  "gtk_notebook_set_menu_label_text" @800
++  "gtk_notebook_set_page" @801
++  "gtk_notebook_set_scrollable" @802
++  "gtk_notebook_set_show_border" @803
++  "gtk_notebook_set_show_tabs" @804
++  "gtk_notebook_set_tab_border" @805
++  "gtk_notebook_set_tab_hborder" @806
++  "gtk_notebook_set_tab_label" @807
++  "gtk_notebook_set_tab_label_packing" @808
++  "gtk_notebook_set_tab_label_text" @809
++  "gtk_notebook_set_tab_pos" @810
++  "gtk_notebook_set_tab_vborder" @811
++  "gtk_object_add_arg_type" @812
++  "gtk_object_arg_get" @813
++  "gtk_object_arg_get_info" @814
++  "gtk_object_arg_set" @815
++  "gtk_object_args_collect" @816
++  "gtk_object_class_add_signals" @817
++  "gtk_object_class_user_signal_new" @818
++  "gtk_object_class_user_signal_newv" @819
++  "gtk_object_constructed" @820
++  "gtk_object_default_construct" @821
++  "gtk_object_destroy" @822
++  "gtk_object_get_data" @823
++  "gtk_object_get_data_by_id" @824
++  "gtk_object_get_type" @825
++  "gtk_object_get_user_data" @826
++  "gtk_object_getv" @827
++  "gtk_object_init_type" @828
++  "gtk_object_new" @829
++  "gtk_object_newv" @830
++  "gtk_object_query_args" @831
++  "gtk_object_ref" @832
++  "gtk_object_remove_data" @833
++  "gtk_object_remove_data_by_id" @834
++  "gtk_object_remove_no_notify" @835
++  "gtk_object_remove_no_notify_by_id" @836
++  "gtk_object_set" @837
++  "gtk_object_set_data" @838
++  "gtk_object_set_data_by_id" @839
++  "gtk_object_set_data_by_id_full" @840
++  "gtk_object_set_data_full" @841
++  "gtk_object_set_user_data" @842
++  "gtk_object_setv" @843
++  "gtk_object_sink" @844
++  "gtk_object_unref" @845
++  "gtk_object_weakref" @846
++  "gtk_object_weakunref" @847
++  "gtk_option_menu_get_menu" @848
++  "gtk_option_menu_get_type" @849
++  "gtk_option_menu_new" @850
++  "gtk_option_menu_remove_menu" @851
++  "gtk_option_menu_set_history" @852
++  "gtk_option_menu_set_menu" @853
++  "gtk_packer_add" @854
++  "gtk_packer_add_defaults" @855
++  "gtk_packer_get_type" @856
++  "gtk_packer_new" @857
++  "gtk_packer_reorder_child" @858
++  "gtk_packer_set_child_packing" @859
++  "gtk_packer_set_default_border_width" @860
++  "gtk_packer_set_default_ipad" @861
++  "gtk_packer_set_default_pad" @862
++  "gtk_packer_set_spacing" @863
++  "gtk_paint_arrow" @864
++  "gtk_paint_box" @865
++  "gtk_paint_box_gap" @866
++  "gtk_paint_check" @867
++  "gtk_paint_cross" @868
++  "gtk_paint_diamond" @869
++  "gtk_paint_extension" @870
++  "gtk_paint_flat_box" @871
++  "gtk_paint_focus" @872
++  "gtk_paint_handle" @873
++  "gtk_paint_hline" @874
++  "gtk_paint_option" @875
++  "gtk_paint_oval" @876
++  "gtk_paint_polygon" @877
++  "gtk_paint_ramp" @878
++  "gtk_paint_shadow" @879
++  "gtk_paint_shadow_gap" @880
++  "gtk_paint_slider" @881
++  "gtk_paint_string" @882
++  "gtk_paint_tab" @883
++  "gtk_paint_vline" @884
++  "gtk_paned_add1" @885
++  "gtk_paned_add2" @886
++  "gtk_paned_compute_position" @887
++  "gtk_paned_get_type" @888
++  "gtk_paned_pack1" @889
++  "gtk_paned_pack2" @890
++  "gtk_paned_set_gutter_size" @891
++  "gtk_paned_set_handle_size" @892
++  "gtk_paned_set_position" @893
++  "gtk_pattern_match" @894
++  "gtk_pattern_match_simple" @895
++  "gtk_pattern_match_string" @896
++  "gtk_pattern_spec_free_segs" @897
++  "gtk_pattern_spec_init" @898
++  "gtk_pixmap_get" @899
++  "gtk_pixmap_get_type" @900
++  "gtk_pixmap_new" @901
++  "gtk_pixmap_set" @902
++  "gtk_pixmap_set_build_insensitive" @903
++  "gtk_plug_construct" @904
++  "gtk_plug_get_type" @905
++  "gtk_plug_new" @906
++  "gtk_preview_draw_row" @907
++  "gtk_preview_get_cmap" @908
++  "gtk_preview_get_info" @909
++  "gtk_preview_get_type" @910
++  "gtk_preview_get_visual" @911
++  "gtk_preview_new" @912
++  "gtk_preview_put" @913
++  "gtk_preview_reset" @914
++  "gtk_preview_set_color_cube" @915
++  "gtk_preview_set_dither" @916
++  "gtk_preview_set_expand" @917
++  "gtk_preview_set_gamma" @918
++  "gtk_preview_set_install_cmap" @919
++  "gtk_preview_set_reserved" @920
++  "gtk_preview_size" @921
++  "gtk_preview_uninit" @922
++  "gtk_progress_bar_get_type" @923
++  "gtk_progress_bar_new" @924
++  "gtk_progress_bar_new_with_adjustment" @925
++  "gtk_progress_bar_set_activity_blocks" @926
++  "gtk_progress_bar_set_activity_step" @927
++  "gtk_progress_bar_set_bar_style" @928
++  "gtk_progress_bar_set_discrete_blocks" @929
++  "gtk_progress_bar_set_orientation" @930
++  "gtk_progress_bar_update" @931
++  "gtk_progress_configure" @932
++  "gtk_progress_get_current_percentage" @933
++  "gtk_progress_get_current_text" @934
++  "gtk_progress_get_percentage_from_value" @935
++  "gtk_progress_get_text_from_value" @936
++  "gtk_progress_get_type" @937
++  "gtk_progress_get_value" @938
++  "gtk_progress_set_activity_mode" @939
++  "gtk_progress_set_adjustment" @940
++  "gtk_progress_set_format_string" @941
++  "gtk_progress_set_percentage" @942
++  "gtk_progress_set_show_text" @943
++  "gtk_progress_set_text_alignment" @944
++  "gtk_progress_set_value" @945
++  "gtk_propagate_event" @946
++  "gtk_quit_add" @947
++  "gtk_quit_add_destroy" @948
++  "gtk_quit_add_full" @949
++  "gtk_quit_remove" @950
++  "gtk_quit_remove_by_data" @951
++  "gtk_radio_button_get_type" @952
++  "gtk_radio_button_group" @953
++  "gtk_radio_button_new" @954
++  "gtk_radio_button_new_from_widget" @955
++  "gtk_radio_button_new_with_label" @956
++  "gtk_radio_button_new_with_label_from_widget" @957
++  "gtk_radio_button_set_group" @958
++  "gtk_radio_menu_item_get_type" @959
++  "gtk_radio_menu_item_group" @960
++  "gtk_radio_menu_item_new" @961
++  "gtk_radio_menu_item_new_with_label" @962
++  "gtk_radio_menu_item_set_group" @963
++  "gtk_range_clear_background" @964
++  "gtk_range_default_hmotion" @965
++  "gtk_range_default_hslider_update" @966
++  "gtk_range_default_htrough_click" @967
++  "gtk_range_default_vmotion" @968
++  "gtk_range_default_vslider_update" @969
++  "gtk_range_default_vtrough_click" @970
++  "gtk_range_draw_background" @971
++  "gtk_range_draw_slider" @972
++  "gtk_range_draw_step_back" @973
++  "gtk_range_draw_step_forw" @974
++  "gtk_range_draw_trough" @975
++  "gtk_range_get_adjustment" @976
++  "gtk_range_get_type" @977
++  "gtk_range_set_adjustment" @978
++  "gtk_range_set_update_policy" @979
++  "gtk_range_slider_update" @980
++  "gtk_range_trough_click" @981
++  "gtk_rc_add_class_style" @982
++  "gtk_rc_add_default_file" @983
++  "gtk_rc_add_widget_class_style" @984
++  "gtk_rc_add_widget_name_style" @985
++  "gtk_rc_find_module_in_path" @986
++  "gtk_rc_find_pixmap_in_path" @987
++  "gtk_rc_get_default_files" @988
++  "gtk_rc_get_module_dir" @989
++  "gtk_rc_get_style" @990
++  "gtk_rc_get_theme_dir" @991
++  "gtk_rc_init" @992
++  "gtk_rc_load_image" @993
++  "gtk_rc_parse" @994
++  "gtk_rc_parse_color" @995
++  "gtk_rc_parse_priority" @996
++  "gtk_rc_parse_state" @997
++  "gtk_rc_parse_string" @998
++  "gtk_rc_reparse_all" @999
++  "gtk_rc_set_default_files" @1000
++  "gtk_rc_set_image_loader" @1001
++  "gtk_rc_style_new" @1002
++  "gtk_rc_style_ref" @1003
++  "gtk_rc_style_unref" @1004
++  "gtk_ruler_draw_pos" @1005
++  "gtk_ruler_draw_ticks" @1006
++  "gtk_ruler_get_type" @1007
++  "gtk_ruler_set_metric" @1008
++  "gtk_ruler_set_range" @1009
++  "gtk_scale_draw_value" @1010
++  "gtk_scale_get_type" @1011
++  "gtk_scale_get_value_width" @1012
++  "gtk_scale_set_digits" @1013
++  "gtk_scale_set_draw_value" @1014
++  "gtk_scale_set_value_pos" @1015
++  "gtk_scrollbar_get_type" @1016
++  "gtk_scrolled_window_add_with_viewport" @1017
++  "gtk_scrolled_window_get_hadjustment" @1018
++  "gtk_scrolled_window_get_type" @1019
++  "gtk_scrolled_window_get_vadjustment" @1020
++  "gtk_scrolled_window_new" @1021
++  "gtk_scrolled_window_set_hadjustment" @1022
++  "gtk_scrolled_window_set_placement" @1023
++  "gtk_scrolled_window_set_policy" @1024
++  "gtk_scrolled_window_set_vadjustment" @1025
++  "gtk_selection_add_target" @1026
++  "gtk_selection_add_targets" @1027
++  "gtk_selection_clear" @1028
++  "gtk_selection_convert" @1029
++  "gtk_selection_data_copy" @1030
++  "gtk_selection_data_free" @1031
++  "gtk_selection_data_set" @1032
++  "gtk_selection_incr_event" @1033
++  "gtk_selection_notify" @1034
++  "gtk_selection_owner_set" @1035
++  "gtk_selection_property_notify" @1036
++  "gtk_selection_remove_all" @1037
++  "gtk_selection_request" @1038
++  "gtk_separator_get_type" @1039
++  "gtk_set_locale" @1040
++  "gtk_signal_add_emission_hook" @1041
++  "gtk_signal_add_emission_hook_full" @1042
++  "gtk_signal_connect" @1043
++  "gtk_signal_connect_after" @1044
++  "gtk_signal_connect_full" @1045
++  "gtk_signal_connect_object" @1046
++  "gtk_signal_connect_object_after" @1047
++  "gtk_signal_connect_object_while_alive" @1048
++  "gtk_signal_connect_while_alive" @1049
++  "gtk_signal_disconnect" @1050
++  "gtk_signal_disconnect_by_data" @1051
++  "gtk_signal_disconnect_by_func" @1052
++  "gtk_signal_emit" @1053
++  "gtk_signal_emit_by_name" @1054
++  "gtk_signal_emit_stop" @1055
++  "gtk_signal_emit_stop_by_name" @1056
++  "gtk_signal_emitv" @1057
++  "gtk_signal_emitv_by_name" @1058
++  "gtk_signal_handler_block" @1059
++  "gtk_signal_handler_block_by_data" @1060
++  "gtk_signal_handler_block_by_func" @1061
++  "gtk_signal_handler_pending" @1062
++  "gtk_signal_handler_pending_by_func" @1063
++  "gtk_signal_handler_unblock" @1064
++  "gtk_signal_handler_unblock_by_data" @1065
++  "gtk_signal_handler_unblock_by_func" @1066
++  "gtk_signal_handlers_destroy" @1067
++  "gtk_signal_init" @1068
++  "gtk_signal_lookup" @1069
++  "gtk_signal_n_emissions" @1070
++  "gtk_signal_n_emissions_by_name" @1071
++  "gtk_signal_name" @1072
++  "gtk_signal_new" @1073
++  "gtk_signal_newv" @1074
++  "gtk_signal_query" @1075
++  "gtk_signal_remove_emission_hook" @1076
++  "gtk_signal_set_funcs" @1077
++  "gtk_socket_get_type" @1078
++  "gtk_socket_new" @1079
++  "gtk_socket_steal" @1080
++  "gtk_spin_button_configure" @1081
++  "gtk_spin_button_get_adjustment" @1082
++  "gtk_spin_button_get_type" @1083
++  "gtk_spin_button_get_value_as_float" @1084
++  "gtk_spin_button_get_value_as_int" @1085
++  "gtk_spin_button_new" @1086
++  "gtk_spin_button_set_adjustment" @1087
++  "gtk_spin_button_set_digits" @1088
++  "gtk_spin_button_set_numeric" @1089
++  "gtk_spin_button_set_shadow_type" @1090
++  "gtk_spin_button_set_snap_to_ticks" @1091
++  "gtk_spin_button_set_update_policy" @1092
++  "gtk_spin_button_set_value" @1093
++  "gtk_spin_button_set_wrap" @1094
++  "gtk_spin_button_spin" @1095
++  "gtk_spin_button_update" @1096
++  "gtk_statusbar_get_context_id" @1097
++  "gtk_statusbar_get_type" @1098
++  "gtk_statusbar_new" @1099
++  "gtk_statusbar_pop" @1100
++  "gtk_statusbar_push" @1101
++  "gtk_statusbar_remove" @1102
++  "gtk_style_apply_default_background" @1103
++  "gtk_style_attach" @1104
++  "gtk_style_copy" @1105
++  "gtk_style_detach" @1106
++  "gtk_style_new" @1107
++  "gtk_style_ref" @1108
++  "gtk_style_set_background" @1109
++  "gtk_style_unref" @1110
++  "gtk_table_attach" @1111
++  "gtk_table_attach_defaults" @1112
++  "gtk_table_get_type" @1113
++  "gtk_table_new" @1114
++  "gtk_table_resize" @1115
++  "gtk_table_set_col_spacing" @1116
++  "gtk_table_set_col_spacings" @1117
++  "gtk_table_set_homogeneous" @1118
++  "gtk_table_set_row_spacing" @1119
++  "gtk_table_set_row_spacings" @1120
++  "gtk_target_list_add" @1121
++  "gtk_target_list_add_table" @1122
++  "gtk_target_list_find" @1123
++  "gtk_target_list_new" @1124
++  "gtk_target_list_ref" @1125
++  "gtk_target_list_remove" @1126
++  "gtk_target_list_unref" @1127
++  "gtk_tearoff_menu_item_get_type" @1128
++  "gtk_tearoff_menu_item_new" @1129
++  "gtk_text_backward_delete" @1130
++  "gtk_text_forward_delete" @1131
++  "gtk_text_freeze" @1132
++  "gtk_text_get_length" @1133
++  "gtk_text_get_point" @1134
++  "gtk_text_get_type" @1135
++  "gtk_text_insert" @1136
++  "gtk_text_new" @1137
++  "gtk_text_set_adjustments" @1138
++  "gtk_text_set_editable" @1139
++  "gtk_text_set_line_wrap" @1140
++  "gtk_text_set_point" @1141
++  "gtk_text_set_word_wrap" @1142
++  "gtk_text_thaw" @1143
++  "gtk_theme_engine_get" @1144
++  "gtk_theme_engine_ref" @1145
++  "gtk_theme_engine_unref" @1146
++  "gtk_timeout_add" @1147
++  "gtk_timeout_add_full" @1148
++  "gtk_timeout_remove" @1149
++  "gtk_tips_query_get_type" @1150
++  "gtk_tips_query_new" @1151
++  "gtk_tips_query_set_caller" @1152
++  "gtk_tips_query_set_labels" @1153
++  "gtk_tips_query_start_query" @1154
++  "gtk_tips_query_stop_query" @1155
++  "gtk_toggle_button_get_type" @1156
++  "gtk_toggle_button_new" @1157
++  "gtk_toggle_button_new_with_label" @1158
++  "gtk_toggle_button_set_active" @1159
++  "gtk_toggle_button_set_mode" @1160
++  "gtk_toggle_button_toggled" @1161
++  "gtk_toolbar_append_element" @1162
++  "gtk_toolbar_append_item" @1163
++  "gtk_toolbar_append_space" @1164
++  "gtk_toolbar_append_widget" @1165
++  "gtk_toolbar_get_button_relief" @1166
++  "gtk_toolbar_get_type" @1167
++  "gtk_toolbar_insert_element" @1168
++  "gtk_toolbar_insert_item" @1169
++  "gtk_toolbar_insert_space" @1170
++  "gtk_toolbar_insert_widget" @1171
++  "gtk_toolbar_new" @1172
++  "gtk_toolbar_prepend_element" @1173
++  "gtk_toolbar_prepend_item" @1174
++  "gtk_toolbar_prepend_space" @1175
++  "gtk_toolbar_prepend_widget" @1176
++  "gtk_toolbar_set_button_relief" @1177
++  "gtk_toolbar_set_orientation" @1178
++  "gtk_toolbar_set_space_size" @1179
++  "gtk_toolbar_set_space_style" @1180
++  "gtk_toolbar_set_style" @1181
++  "gtk_toolbar_set_tooltips" @1182
++  "gtk_tooltips_data_get" @1183
++  "gtk_tooltips_disable" @1184
++  "gtk_tooltips_enable" @1185
++  "gtk_tooltips_force_window" @1186
++  "gtk_tooltips_get_type" @1187
++  "gtk_tooltips_new" @1188
++  "gtk_tooltips_set_colors" @1189
++  "gtk_tooltips_set_delay" @1190
++  "gtk_tooltips_set_tip" @1191
++  "gtk_trace_referencing" @1192
++  "gtk_tree_append" @1193
++  "gtk_tree_child_position" @1194
++  "gtk_tree_clear_items" @1195
++  "gtk_tree_get_type" @1196
++  "gtk_tree_insert" @1197
++  "gtk_tree_item_collapse" @1198
++  "gtk_tree_item_deselect" @1199
++  "gtk_tree_item_expand" @1200
++  "gtk_tree_item_get_type" @1201
++  "gtk_tree_item_new" @1202
++  "gtk_tree_item_new_with_label" @1203
++  "gtk_tree_item_remove_subtree" @1204
++  "gtk_tree_item_select" @1205
++  "gtk_tree_item_set_subtree" @1206
++  "gtk_tree_new" @1207
++  "gtk_tree_prepend" @1208
++  "gtk_tree_remove_item" @1209
++  "gtk_tree_remove_items" @1210
++  "gtk_tree_select_child" @1211
++  "gtk_tree_select_item" @1212
++  "gtk_tree_set_selection_mode" @1213
++  "gtk_tree_set_view_lines" @1214
++  "gtk_tree_set_view_mode" @1215
++  "gtk_tree_unselect_child" @1216
++  "gtk_tree_unselect_item" @1217
++  "gtk_true" @1218
++  "gtk_type_check_class_cast" @1219
++  "gtk_type_check_object_cast" @1220
++  "gtk_type_children_types" @1221
++  "gtk_type_class" @1222
++  "gtk_type_describe_heritage" @1223
++  "gtk_type_describe_tree" @1224
++  "gtk_type_enum_find_value" @1225
++  "gtk_type_enum_get_values" @1226
++  "gtk_type_flags_find_value" @1227
++  "gtk_type_flags_get_values" @1228
++  "gtk_type_free" @1229
++  "gtk_type_from_name" @1230
++  "gtk_type_get_varargs_type" @1231
++  "gtk_type_init" @1232
++  "gtk_type_is_a" @1233
++  "gtk_type_name" @1234
++  "gtk_type_new" @1235
++  "gtk_type_parent" @1236
++  "gtk_type_parent_class" @1237
++  "gtk_type_query" @1238
++  "gtk_type_register_enum" @1239
++  "gtk_type_register_flags" @1240
++  "gtk_type_set_chunk_alloc" @1241
++  "gtk_type_set_varargs_type" @1242
++  "gtk_type_unique" @1243
++  "gtk_vbox_get_type" @1244
++  "gtk_vbox_new" @1245
++  "gtk_vbutton_box_get_layout_default" @1246
++  "gtk_vbutton_box_get_spacing_default" @1247
++  "gtk_vbutton_box_get_type" @1248
++  "gtk_vbutton_box_new" @1249
++  "gtk_vbutton_box_set_layout_default" @1250
++  "gtk_vbutton_box_set_spacing_default" @1251
++  "gtk_viewport_get_hadjustment" @1252
++  "gtk_viewport_get_type" @1253
++  "gtk_viewport_get_vadjustment" @1254
++  "gtk_viewport_new" @1255
++  "gtk_viewport_set_hadjustment" @1256
++  "gtk_viewport_set_shadow_type" @1257
++  "gtk_viewport_set_vadjustment" @1258
++  "gtk_vpaned_get_type" @1259
++  "gtk_vpaned_new" @1260
++  "gtk_vruler_get_type" @1261
++  "gtk_vruler_new" @1262
++  "gtk_vscale_get_type" @1263
++  "gtk_vscale_new" @1264
++  "gtk_vscrollbar_get_type" @1265
++  "gtk_vscrollbar_new" @1266
++  "gtk_vseparator_get_type" @1267
++  "gtk_vseparator_new" @1268
++  "gtk_widget_accelerator_signal" @1269
++  "gtk_widget_activate" @1270
++  "gtk_widget_add_accelerator" @1271
++  "gtk_widget_add_events" @1272
++  "gtk_widget_class_path" @1273
++  "gtk_widget_destroy" @1274
++  "gtk_widget_destroyed" @1275
++  "gtk_widget_draw" @1276
++  "gtk_widget_draw_default" @1277
++  "gtk_widget_draw_focus" @1278
++  "gtk_widget_ensure_style" @1279
++  "gtk_widget_event" @1280
++  "gtk_widget_get" @1281
++  "gtk_widget_get_ancestor" @1282
++  "gtk_widget_get_colormap" @1283
++  "gtk_widget_get_composite_name" @1284
++  "gtk_widget_get_default_colormap" @1285
++  "gtk_widget_get_default_style" @1286
++  "gtk_widget_get_default_visual" @1287
++  "gtk_widget_get_events" @1288
++  "gtk_widget_get_extension_events" @1289
++  "gtk_widget_get_name" @1290
++  "gtk_widget_get_parent_window" @1291
++  "gtk_widget_get_pointer" @1292
++  "gtk_widget_get_style" @1293
++  "gtk_widget_get_toplevel" @1294
++  "gtk_widget_get_type" @1295
++  "gtk_widget_get_visual" @1296
++  "gtk_widget_getv" @1297
++  "gtk_widget_grab_default" @1298
++  "gtk_widget_grab_focus" @1299
++  "gtk_widget_hide" @1300
++  "gtk_widget_hide_all" @1301
++  "gtk_widget_hide_on_delete" @1302
++  "gtk_widget_intersect" @1303
++  "gtk_widget_is_ancestor" @1304
++  "gtk_widget_lock_accelerators" @1305
++  "gtk_widget_map" @1306
++  "gtk_widget_modify_style" @1307
++  "gtk_widget_new" @1308
++  "gtk_widget_newv" @1309
++  "gtk_widget_path" @1310
++  "gtk_widget_pop_colormap" @1311
++  "gtk_widget_pop_composite_child" @1312
++  "gtk_widget_pop_style" @1313
++  "gtk_widget_pop_visual" @1314
++  "gtk_widget_popup" @1315
++  "gtk_widget_push_colormap" @1316
++  "gtk_widget_push_composite_child" @1317
++  "gtk_widget_push_style" @1318
++  "gtk_widget_push_visual" @1319
++  "gtk_widget_queue_clear" @1320
++  "gtk_widget_queue_clear_area" @1321
++  "gtk_widget_queue_draw" @1322
++  "gtk_widget_queue_draw_area" @1323
++  "gtk_widget_queue_resize" @1324
++  "gtk_widget_realize" @1325
++  "gtk_widget_ref" @1326
++  "gtk_widget_remove_accelerator" @1327
++  "gtk_widget_remove_accelerators" @1328
++  "gtk_widget_reparent" @1329
++  "gtk_widget_reset_rc_styles" @1330
++  "gtk_widget_reset_shapes" @1331
++  "gtk_widget_restore_default_style" @1332
++  "gtk_widget_set" @1333
++  "gtk_widget_set_app_paintable" @1334
++  "gtk_widget_set_composite_name" @1335
++  "gtk_widget_set_default_colormap" @1336
++  "gtk_widget_set_default_style" @1337
++  "gtk_widget_set_default_visual" @1338
++  "gtk_widget_set_events" @1339
++  "gtk_widget_set_extension_events" @1340
++  "gtk_widget_set_name" @1341
++  "gtk_widget_set_parent" @1342
++  "gtk_widget_set_parent_window" @1343
++  "gtk_widget_set_rc_style" @1344
++  "gtk_widget_set_scroll_adjustments" @1345
++  "gtk_widget_set_sensitive" @1346
++  "gtk_widget_set_state" @1347
++  "gtk_widget_set_style" @1348
++  "gtk_widget_set_uposition" @1349
++  "gtk_widget_set_usize" @1350
++  "gtk_widget_setv" @1351
++  "gtk_widget_shape_combine_mask" @1352
++  "gtk_widget_show" @1353
++  "gtk_widget_show_all" @1354
++  "gtk_widget_show_now" @1355
++  "gtk_widget_size_allocate" @1356
++  "gtk_widget_size_request" @1357
++  "gtk_widget_unlock_accelerators" @1358
++  "gtk_widget_unmap" @1359
++  "gtk_widget_unparent" @1360
++  "gtk_widget_unrealize" @1361
++  "gtk_widget_unref" @1362
++  "gtk_window_activate_default" @1363
++  "gtk_window_activate_focus" @1364
++  "gtk_window_add_accel_group" @1365
++  "gtk_window_add_embedded_xid" @1366
++  "gtk_window_get_type" @1367
++  "gtk_window_new" @1368
++  "gtk_window_remove_accel_group" @1369
++  "gtk_window_remove_embedded_xid" @1370
++  "gtk_window_set_default" @1371
++  "gtk_window_set_default_size" @1372
++  "gtk_window_set_focus" @1373
++  "gtk_window_set_geometry_hints" @1374
++  "gtk_window_set_modal" @1375
++  "gtk_window_set_policy" @1376
++  "gtk_window_set_position" @1377
++  "gtk_window_set_title" @1378
++  "gtk_window_set_transient_for" @1379
++  "gtk_window_set_wmclass" @1380
++  "gtk_menu_set_title" @1381
++  "gtk_toggle_button_get_active" @1382
++  "gtk_widget_set_colormap" @1383
++  "gtk_widget_set_visual" @1384
++  "gtk_handle_box_set_handle_position" @1385
++  "gtk_handle_box_set_snap_edge" @1386
++  "gtk_widget_get_child_requisition" @1387
++  "gtk_init_check" @1388
++  "gtk_menu_reorder_child" @1389
++  "gtk_object_post_arg_parsing_init" @1390
++  "gtk_signal_handler_pending_by_id" @1391
++  "gtk_item_factory_add_foreign" @1392
++  "gtk_item_factory_get_item" @1393
++  "gtk_item_factory_get_item_by_action" @1394
++  "gtk_menu_ensure_uline_accel_group" @1395
++  "gtk_menu_get_accel_group" @1396
++  "gtk_menu_get_uline_accel_group" @1397
++  "gtk_menu_shell_deselect" @1398
++  "gtk_widget_accelerators_locked" @1399
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkos2.rsp.in gtk+-1.2.2/gtk/gtkos2.rsp.in
+--- gtk+-1.2.2.orig/gtk/gtkos2.rsp.in	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gtk/gtkos2.rsp.in	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,39 @@
++fnmatch.obj               gtkaccelgroup.obj         gtkaccellabel.obj+
++gtkadjustment.obj         gtkalignment.obj          gtkarg.obj+
++gtkarrow.obj              gtkaspectframe.obj        gtkbbox.obj+
++gtkbin.obj                gtkbindings.obj           gtkbox.obj+
++gtkbutton.obj             gtkcalendar.obj           gtkcheckbutton.obj+
++gtkcheckmenuitem.obj      gtkclist.obj              gtkcolorsel.obj+
++gtkcombo.obj              gtkcontainer.obj          gtkctree.obj+
++gtkcurve.obj              gtkdata.obj               gtkdialog.obj+
++gtkdnd.obj                gtkdrawingarea.obj        gtkeditable.obj+
++gtkentry.obj              gtkeventbox.obj           gtkfilesel.obj+
++gtkfixed.obj              gtkfontsel.obj            gtkframe.obj+
++gtkgamma.obj              gtkgc.obj                 gtkhandlebox.obj+
++gtkhbbox.obj              gtkhbox.obj               gtkhpaned.obj+
++gtkhruler.obj             gtkhscale.obj             gtkhscrollbar.obj+
++gtkhseparator.obj         gtkimage.obj              gtkinputdialog.obj+
++gtkinvisible.obj          gtkitem.obj               gtkitemfactory.obj+
++gtklabel.obj              gtklayout.obj             gtklist.obj+
++gtklistitem.obj           gtkmain.obj               gtkmarshal.obj+
++gtkmenu.obj               gtkmenubar.obj            gtkmenufactory.obj+
++gtkmenuitem.obj           gtkmenushell.obj          gtkmisc.obj+
++gtknotebook.obj           gtkobject.obj             gtkoptionmenu.obj+
++gtkpacker.obj             gtkpaned.obj              gtkpixmap.obj+
++gtkplug.obj               gtkpreview.obj            gtkprogress.obj+
++gtkprogressbar.obj        gtkradiobutton.obj        gtkradiomenuitem.obj+
++gtkrange.obj              gtkrc.obj                 gtkruler.obj+
++gtkscale.obj              gtkscrollbar.obj          gtkscrolledwindow.obj+
++gtkselection.obj          gtkseparator.obj          gtksignal.obj+
++gtksocket.obj             gtkspinbutton.obj         gtkstatusbar.obj+
++gtkstyle.obj              gtktable.obj              gtktearoffmenuitem.obj+
++gtktext.obj               gtkthemes.obj             gtktipsquery.obj+
++gtktogglebutton.obj       gtktoolbar.obj            gtktooltips.obj+
++gtktree.obj               gtktreeitem.obj           gtktypeutils.obj+
++gtkvbbox.obj              gtkvbox.obj               gtkviewport.obj+
++gtkvpaned.obj             gtkvruler.obj             gtkvscale.obj+
++gtkvscrollbar.obj         gtkvseparator.obj         gtkwidget.obj+
++gtkwindow.obj+
++/NOL /NOD /BAT
++@libname@.dll
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkrc.c gtk+-1.2.2/gtk/gtkrc.c
+--- gtk+-1.2.2.orig/gtk/gtkrc.c	Wed Apr 14 04:20:08 1999
++++ gtk+-1.2.2/gtk/gtkrc.c	Mon Apr 19 15:15:14 1999
+@@ -27,12 +27,17 @@
+ #include <X11/Xlocale.h>	/* so we get the right setlocale */
+ #include <ctype.h>
+ #include <unistd.h>
++#include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/param.h>
+ #include <fcntl.h>
+ #include <string.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#ifdef __EMX__
++#define lstat stat
++extern char *__XOS2RedirRoot(const char *);
++#endif
+ 
+ #include "gtkrc.h"
+ #include "gtkbindings.h"
+@@ -220,6 +225,14 @@
+     path = g_strdup_printf("%s%s", var, "/share/themes");
+   else
+     path = g_strdup_printf("%s%s", GTK_DATA_PREFIX, "/share/themes");
++#ifdef __EMX__
++  if (*path == '/' || *path == '\\')
++    {
++      var = g_strdup(__XOS2RedirRoot(path));
++      g_free(path);
++      path = var;
++    }
++#endif
+ 
+   return path;
+ }
+@@ -234,6 +247,14 @@
+     path = g_strdup_printf("%s%s", var, "/lib/gtk/themes/engines");
+   else
+     path = g_strdup_printf("%s%s", GTK_EXE_PREFIX, "/lib/gtk/themes/engines");
++#ifdef __EMX__
++  if (*path == '/' || *path == '\\')
++    {
++      var = g_strdup(__XOS2RedirRoot(path));
++      g_free(path);
++      path = var;
++    }
++#endif
+ 
+   return path;
+ }
+@@ -253,6 +274,11 @@
+   for (n = 0; pixmap_path[n]; n++) ;
+   if (n >= GTK_RC_MAX_PIXMAP_PATHS - 1)
+     return;
++#ifdef __EMX__
++  if (*path == '/' || *path =='\\')
++    pixmap_path[n++] = g_strdup(__XOS2RedirRoot(path));
++  else
++#endif
+   pixmap_path[n++] = g_strdup(path);
+   pixmap_path[n] = NULL;
+   g_free(path);
+@@ -285,6 +311,11 @@
+     path = g_strdup_printf("%s%s", var, "/lib/gtk/themes/engines");
+   else
+     path = g_strdup_printf("%s%s", GTK_EXE_PREFIX, "/lib/gtk/themes/engines");
++#ifdef __EMX__
++  if (*path == '/' || *path =='\\')
++    module_path[n++] = g_strdup(__XOS2RedirRoot(path));
++  else
++#endif
+   module_path[n++] = g_strdup(path);
+   g_free(path);
+ 
+@@ -313,7 +344,11 @@
+   var = getenv("GTK_RC_FILES");
+   if (var)
+     {
++#ifndef __EMX__
+       files = g_strsplit (var, ":", 128);
++#else
++      files = g_strsplit (var, ";", 128);
++#endif
+       i=0;
+       while (files[i])
+ 	{
+@@ -325,7 +360,11 @@
+   else
+     {
+       str = g_strdup_printf ("%s%s", GTK_SYSCONFDIR, "/gtk/gtkrc");
++#ifndef __EMX__
+       gtk_rc_add_default_file (str);
++#else
++      gtk_rc_add_default_file (__XOS2RedirRoot(str));
++#endif
+       g_free (str);
+ 
+       str = g_strdup_printf ("%s%s", g_get_home_dir (), "/.gtkrc");
+@@ -492,8 +531,21 @@
+     {
+       /* Get the absolute pathname */
+ 
++#ifndef __EMX__
+       if (rc_file->name[0] == '/')
+ 	rc_file->canonical_name = rc_file->name;
++#else
++      if (_fnisabs(rc_file->name))
++	{
++	  rc_file->canonical_name = rc_file->name;
++	  if (stat (rc_file->name, &statbuf))
++	    { /* try RedirRoot */
++	      rc_file->name = g_strdup(__XOS2RedirRoot(rc_file->name));
++	      g_free(rc_file->canonical_name);
++	      rc_file->canonical_name = rc_file->name;
++	    }
++	}
++#endif
+       else
+ 	{
+ 	  GString *str;
+@@ -517,7 +569,11 @@
+ 
+       rc_file->mtime = statbuf.st_mtime;
+ 
++#ifndef __EMX__
+       fd = open (rc_file->canonical_name, O_RDONLY);
++#else
++      fd = open (rc_file->canonical_name, O_RDONLY | O_TEXT);
++#endif
+       if (fd < 0)
+ 	return;
+ 
+@@ -526,7 +582,12 @@
+ 	  gchar *dir;
+ 	  
+ 	  dir = g_strdup(rc_file->canonical_name);
++#ifndef __EMX__
+ 	  for (i = strlen(dir) - 1; (i >= 0) && (dir[i] != '/'); i--)
++#else
++	  for (i = strlen(dir) - 1; (i >= 0) && (dir[i] != '/') &&
++		(dir[i] != '\\'); i--)
++#endif
+ 	    dir[i] = 0;
+ 	  gtk_rc_append_pixmap_path(dir);
+ 	  g_free(dir);
+@@ -1908,7 +1969,11 @@
+   
+   for (end_offset = 0; end_offset <= path_len; end_offset++)
+     {
++#ifndef __EMX__
+       if ((buf[end_offset] == ':') ||
++#else
++      if ((buf[end_offset] == ';') ||
++#endif
+ 	  (end_offset == path_len))
+ 	{
+ 	  buf[end_offset] = '\0';
+@@ -1964,7 +2029,11 @@
+   
+   for (end_offset = 0; end_offset <= path_len; end_offset++)
+     {
++#ifndef __EMX__
+       if ((buf[end_offset] == ':') ||
++#else
++      if ((buf[end_offset] == ';') ||
++#endif
+ 	  (end_offset == path_len))
+ 	{
+ 	  buf[end_offset] = '\0';
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/gtkthemes.c gtk+-1.2.2/gtk/gtkthemes.c
+--- gtk+-1.2.2.orig/gtk/gtkthemes.c	Wed Feb 24 18:15:12 1999
++++ gtk+-1.2.2/gtk/gtkthemes.c	Mon Apr 19 15:15:14 1999
+@@ -71,8 +71,26 @@
+        gchar *engine_path;
+        GModule *library;
+       
++#ifndef __EMX__
+        g_snprintf (fullname, 1024, "lib%s.so", name);
++#else
++       {
++	 /* 8.3 dll filename restriction */
++	 fullname[0] = '_';
++	 strncpy (fullname + 1, name, 7);
++	 fullname[8] = '\0';
++         strcat (fullname, ".dll");
++       }
++#endif
+        engine_path = gtk_rc_find_module_in_path (fullname);
++#ifdef __EMX__
++       if (!engine_path)
++	 {
++	   /* try theme name without prefix '_' */
++	   memmove(fullname, fullname + 1, strlen(fullname));
++	   engine_path = gtk_rc_find_module_in_path (fullname);
++	 }
++#endif
+ 
+        if (!engine_path)
+ 	 {
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/Imakefile gtk+-1.2.2/gtk/Imakefile
+--- gtk+-1.2.2.orig/gtk/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gtk/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,290 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw> 03/08/1999
++ */
++
++#include "../gtk.cf"
++
++#define DoNormalLib (!HasSharedLibraries || ForceNormalLib)
++#define DoSharedLib HasSharedLibraries
++#define LibName GtkLibName
++#define IncSubdir GtkLibName
++#define IncSubSubdir gtk
++
++REQUIREDLIBS = ..\\gdk\\ $(GDK_LIB) $(X11ROOT)\\XFree86\\lib\\ X11 \
++		$(GMODULE_LIB) $(GLIB_LIB) $(INTL_LIB)
++
++INCLUDES = -I.. -I$(GLIB_INCDIR)
++
++DEFINES = \
++	-DHAVE_CONFIG_H					\
++	-DGTK_DISABLE_COMPAT_H				\
++	-DG_LOG_DOMAIN=\"Gtk\"				\
++        -DGTK_EXE_PREFIX=\""$(GTK_EXE_PREFIX)"\"	\
++        -DGTK_DATA_PREFIX=\""$(GTK_DATA_PREFIX)"\"	\
++        -DGTK_SYSCONFDIR=\""$(GTK_SYSCONFDIR)"\"	\
++        -DGTK_LOCALEDIR=\""$(GTK_LOCALEDIR)"\"		\
++        -DGTK_NO_CHECK_CASTS				\
++        -DUSE_XIM
++
++source_headers = \
++	gtk.h			\
++	gtkaccelgroup.h		\
++	gtkaccellabel.h		\
++	gtkadjustment.h		\
++	gtkalignment.h		\
++	gtkarg.h		\
++	gtkarrow.h		\
++	gtkaspectframe.h	\
++	gtkbin.h		\
++	gtkbindings.h		\
++	gtkbbox.h		\
++	gtkbox.h		\
++	gtkbutton.h		\
++	gtkcalendar.h		\
++	gtkcheckbutton.h	\
++	gtkcheckmenuitem.h	\
++	gtkclist.h		\
++	gtkcolorsel.h		\
++	gtkcombo.h		\
++	gtkcompat.h		\
++	gtkcontainer.h		\
++	gtkctree.h		\
++	gtkcurve.h		\
++	gtkdata.h		\
++	gtkdebug.h              \
++	gtkdialog.h		\
++	gtkdnd.h		\
++	gtkdrawingarea.h	\
++	gtkeditable.h           \
++	gtkentry.h		\
++	gtkenums.h		\
++	gtkeventbox.h		\
++	gtkfilesel.h		\
++	gtkfixed.h		\
++	gtkfontsel.h		\
++	gtkframe.h		\
++	gtkgamma.h		\
++	gtkgc.h			\
++	gtkhandlebox.h		\
++	gtkhbbox.h		\
++	gtkhbox.h		\
++	gtkhpaned.h		\
++	gtkhruler.h		\
++	gtkhscale.h		\
++	gtkhscrollbar.h		\
++	gtkhseparator.h		\
++	gtkimage.h		\
++	gtkinputdialog.h	\
++	gtkinvisible.h		\
++	gtkitem.h		\
++	gtkitemfactory.h	\
++	gtklabel.h		\
++	gtklayout.h             \
++	gtklist.h		\
++	gtklistitem.h		\
++	gtkmain.h		\
++	gtkmenu.h		\
++	gtkmenubar.h		\
++	gtkmenufactory.h	\
++	gtkmenuitem.h		\
++	gtkmenushell.h		\
++	gtkmisc.h		\
++	gtknotebook.h		\
++	gtkobject.h		\
++	gtkoptionmenu.h		\
++	gtkpacker.h		\
++	gtkpaned.h		\
++	gtkpixmap.h		\
++	gtkplug.h		\
++	gtkpreview.h		\
++	gtkprivate.h		\
++	gtkprogress.h		\
++	gtkprogressbar.h	\
++	gtkradiobutton.h	\
++	gtkradiomenuitem.h	\
++	gtkrange.h		\
++	gtkrc.h			\
++	gtkruler.h		\
++	gtkscale.h		\
++	gtkscrollbar.h		\
++	gtkscrolledwindow.h	\
++	gtkselection.h		\
++	gtkseparator.h		\
++	gtksignal.h		\
++	gtksocket.h		\
++	gtkspinbutton.h		\
++	gtkstyle.h		\
++	gtkstatusbar.h		\
++	gtktable.h		\
++	gtktearoffmenuitem.h    \
++	gtktext.h		\
++	gtkthemes.h		\
++	gtktipsquery.h		\
++	gtktogglebutton.h	\
++	gtktoolbar.h		\
++	gtktooltips.h		\
++	gtktree.h		\
++	gtktreeitem.h		\
++	gtktypeutils.h		\
++	gtkvbbox.h		\
++	gtkvbox.h		\
++	gtkviewport.h		\
++	gtkvpaned.h		\
++	gtkvruler.h		\
++	gtkvscale.h		\
++	gtkvscrollbar.h		\
++	gtkvseparator.h		\
++	gtkwidget.h		\
++	gtkwindow.h		\
++
++HEADERS = \
++	$(source_headers)	\
++	gtkfeatures.h		\
++	gtkmarshal.h		\
++	gtktypebuiltins.h
++
++SRCS = \
++	gtkaccelgroup.c		\
++	gtkaccellabel.c		\
++	gtkadjustment.c		\
++	gtkalignment.c		\
++	gtkarg.c		\
++	gtkarrow.c		\
++	gtkaspectframe.c	\
++	gtkbin.c		\
++	gtkbindings.c		\
++	gtkbbox.c		\
++	gtkbox.c		\
++	gtkbutton.c		\
++	gtkcalendar.c		\
++	gtkcheckbutton.c	\
++	gtkcheckmenuitem.c	\
++	gtkclist.c		\
++	gtkcolorsel.c		\
++	gtkcombo.c		\
++	gtkcontainer.c		\
++	gtkctree.c		\
++	gtkcurve.c		\
++	gtkdata.c		\
++	gtkdialog.c		\
++	gtkdnd.c		\
++	gtkdrawingarea.c	\
++	gtkeditable.c           \
++	gtkentry.c		\
++	gtkeventbox.c		\
++	gtkfilesel.c		\
++	gtkfixed.c		\
++	gtkfontsel.c            \
++	gtkframe.c		\
++	gtkgamma.c		\
++	gtkgc.c			\
++	gtkhandlebox.c		\
++	gtkhbbox.c		\
++	gtkhbox.c		\
++	gtkhpaned.c		\
++	gtkhruler.c		\
++	gtkhscale.c		\
++	gtkhscrollbar.c		\
++	gtkhseparator.c		\
++	gtkimage.c		\
++	gtkinputdialog.c	\
++	gtkinvisible.c		\
++	gtkitem.c		\
++	gtkitemfactory.c	\
++	gtklabel.c		\
++	gtklayout.c		\
++	gtklist.c		\
++	gtklistitem.c		\
++	gtkmain.c		\
++	gtkmenu.c		\
++	gtkmenubar.c		\
++	gtkmenufactory.c	\
++	gtkmenuitem.c		\
++	gtkmenushell.c		\
++	gtkmisc.c		\
++	gtknotebook.c		\
++	gtkobject.c		\
++	gtkoptionmenu.c		\
++	gtkpacker.c		\
++	gtkpaned.c		\
++	gtkpixmap.c		\
++	gtkplug.c               \
++	gtkpreview.c		\
++	gtkprogress.c		\
++	gtkprogressbar.c	\
++	gtkradiobutton.c	\
++	gtkradiomenuitem.c	\
++	gtkrange.c		\
++	gtkrc.c			\
++	gtkruler.c		\
++	gtkscale.c		\
++	gtkscrollbar.c		\
++	gtkscrolledwindow.c	\
++	gtkselection.c		\
++	gtkseparator.c		\
++	gtksignal.c		\
++	gtksocket.c             \
++	gtkspinbutton.c		\
++	gtkstyle.c		\
++	gtkstatusbar.c		\
++	gtktable.c		\
++	gtktearoffmenuitem.c    \
++	gtktext.c		\
++	gtkthemes.c		\
++	gtktipsquery.c		\
++	gtktogglebutton.c	\
++	gtktoolbar.c		\
++	gtktooltips.c		\
++	gtktree.c		\
++	gtktreeitem.c		\
++	gtktypeutils.c		\
++	gtkvbbox.c		\
++	gtkvbox.c		\
++	gtkviewport.c		\
++	gtkvpaned.c		\
++	gtkvruler.c		\
++	gtkvscale.c		\
++	gtkvscrollbar.c		\
++	gtkvseparator.c		\
++	gtkwidget.c		\
++	gtkwindow.c		\
++	fnmatch.c		\
++	gtkmarshal.c
++
++#include <Library.tmpl>
++
++MakeLibDefRsp(gtk,$(GTK_VERSION))
++
++DependTarget()
++
++/*
++	Config files
++ */
++install::
++	$(MKDIRHIER) $(DESTDIR)$(GTK_DATA_PREFIX)/share/themes/Default/gtk
++	echo "# Empty gtkrc for default theme" > \
++		$(DESTDIR)$(GTK_DATA_PREFIX)/share/themes/Default/gtk/gtkrc
++
++gtkconf_DATA = gtkrc.ja gtkrc.ko gtkrc.ru
++InstallMultipleFlags($(gtkconf_DATA),$(GTK_SYSCONFDIR)/gtk,$(INSTDATFLAGS))
++
++testgrkrc_DATA = testgtkrc testgtkrc2
++InstallMultipleFlags($(testgrkrc_DATA),$(LIBDIR)/gtk,$(INSTDATFLAGS))
++
++/*
++	Test Programs
++ */
++#define MakeProgram(name)		@@\
++AllTarget(ProgramTargetName(name))	@@\
++ProgramTargetName(name): name.c		@@\
++	$(CC) -o $@ $(CFLAGS) $< -L. -L../gdk $(LDOPTIONS) $(L_GTK_LIBS) \ @@\
++		$(LDLIBS) $(EXTRA_LOAD_FLAGS)
++
++MakeProgram(testgtk)
++MakeProgram(testinput)
++MakeProgram(testselection)
++MakeProgram(testrgb)
++MakeProgram(testdnd)
++MakeProgram(simple)
++
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk/testgtkrc gtk+-1.2.2/gtk/testgtkrc
+--- gtk+-1.2.2.orig/gtk/testgtkrc	Mon Feb 22 11:49:48 1999
++++ gtk+-1.2.2/gtk/testgtkrc	Mon Apr 19 15:15:14 1999
+@@ -13,11 +13,12 @@
+ # testgtkrc2 sets all the buttons in the main window to blue by default
+ include "testgtkrc2"
+ 
+-#include "/usr/local/share/themes/Pixmap/gtk/gtkrc"
+-#include "/usr/local/share/themes/Redmond95/gtk/gtkrc"
+-#include "/usr/local/share/themes/Metal/gtk/gtkrc"
+-#include "/usr/local/share/themes/Notif/gtk/gtkrc"
+-#include "/usr/local/share/themes/Default/gtk/gtkrc"
++# require gtk-engine
++#include "/XFree86/share/themes/Pixmap/gtk/gtkrc"
++#include "/XFree86/share/themes/Redmond95/gtk/gtkrc"
++#include "/XFree86/share/themes/Metal/gtk/gtkrc"
++#include "/XFree86/share/themes/Notif/gtk/gtkrc"
++#include "/XFree86/share/themes/Default/gtk/gtkrc"
+ 
+ pixmap_path "."
+ 
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk-config.in gtk+-1.2.2/gtk-config.in
+--- gtk+-1.2.2.orig/gtk-config.in	Tue Feb  2 07:17:38 1999
++++ gtk+-1.2.2/gtk-config.in	Mon Apr 19 15:15:14 1999
+@@ -115,6 +115,6 @@
+         fi
+       done
+ 
+-      echo $libdirs @x_ldflags@ -lgtk -lgdk $my_glib_libs @INTLLIBS@ @x_libs@ @GDK_WLIBS@ -lm
++      echo $libdirs @x_ldflags@ -l@gtklibname@ -l@gdklibname@ $my_glib_libs @INTLLIBS@ @x_libs@ @GDK_WLIBS@ -lm
+ fi      
+ 
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/gtk.cf gtk+-1.2.2/gtk.cf
+--- gtk+-1.2.2.orig/gtk.cf	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/gtk.cf	Mon Apr 19 15:15:56 1999
+@@ -0,0 +1,37 @@
++/*
++	Imakefile configuration for gtk+ of XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>	03/08/1999
++ */
++
++#ifndef GtkCF
++#define GtkCF
++
++#include <glib.cf>
++
++GTK_VERSION = 1.2.2
++
++/* disable XSHM ? since the official X servers are defective */
++#define GdkDisableXshm	YES
++
++#define GdkLibName	gdk12
++#define GtkLibName	gtk12
++
++/*---------------------------------------------------------------------*/
++GDK_LIB		= GdkLibName
++GTK_LIB		= GtkLibName
++
++GTK_INCDIR	= $(INCDIR)/GtkLibName
++GTK_INCLUDES	= -I$(GTK_INCDIR) -I$(GLIB_INCDIR)
++/* for sed substitution */
++S_GTK_INCS	= -I$${X11ROOT}/XFree86/include/GtkLibName $(S_GLIB_INCS)
++
++L_GDK_LIBS	= -l$(GDK_LIB) $(L_XSHM_LIBS) $(L_GLIB_LIBS) -lbsd -lsocket
++L_GTK_LIBS	= -l$(GTK_LIB) -l$(GDK_LIB) $(L_XSHM_LIBS) $(L_GLIB_LIBS) \
++		  -l$(INTL_LIB) -lbsd -lsocket
++
++GTK_EXE_PREFIX	= ProjectRoot
++GTK_DATA_PREFIX	= ProjectRoot
++GTK_SYSCONFDIR	= $(LIBDIR)
++GTK_LOCALEDIR	= $(XLOCALEDIR)
++
++#endif	/* GtkCF */
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/Imakefile gtk+-1.2.2/Imakefile
+--- gtk+-1.2.2.orig/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/Imakefile	Mon Apr 19 15:15:14 1999
+@@ -0,0 +1,37 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>	03/08/1999
++ */
++
++#define IHaveSubdirs
++#define PassCDebugFlags
++
++#include "./gtk.cf"
++
++/*
++	Subdirs
++ */
++SUBDIRS = po gdk gtk docs # examples
++
++MakeSubdirs($(SUBDIRS))
++DependSubdirs($(SUBDIRS))
++
++/*
++	Config files
++ */
++CONF_SUBST = \
++	-e "s,@includedir@,$${prefix}/include/$(GTK_LIB),g"		\
++	-e "s,@glib_libs@,$(L_GMODULE_LIBS),g"				\
++	-e "s,@glib_cflags@,$(S_GLIB_INCS),g"				\
++	-e "s,@glib_thread_libs@,-l$(GTHREAD_LIB) $(L_GMODULE_LIBS),g"	\
++	-e "s,@glib_thread_cflags@,$(S_GLIB_INCS),g"			\
++	-e "s,@GDK_WLIBS@,,g"						\
++	-e "s,@INTLLIBS@,-l$(INTL_LIB),g"				\
++	-e "s,@GTK_VERSION@,$(GTK_VERSION),g"				\
++	-e "s,@gtklibname@,$(GTK_LIB),g"				\
++	-e "s,@gdklibname@,$(GDK_LIB),g"
++InstallConfigShell(gtk,$(GTK_LIB),$(CONF_SUBST))
++
++InstallNonExecFile(gtk.cf,$(LIBDIR)/config)
++
++InstallAutomakeMacros(gtk.m4)
+diff -ru -x Makefile -x exports -x COPYING.LIB -x INSTALL -N gtk+-1.2.2.orig/po/Imakefile gtk+-1.2.2/po/Imakefile
+--- gtk+-1.2.2.orig/po/Imakefile	Thu Jan  1 00:00:00 1970
++++ gtk+-1.2.2/po/Imakefile	Mon Apr 19 16:25:38 1999
+@@ -0,0 +1,23 @@
++/*
++	For XFree86/OS2
++	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>	03/08/1999
++ */
++
++#define PackageName gtk+
++
++#include "../gtk.cf"
++
++InstallMO(cs)
++InstallMO(de)
++InstallMO(es)
++InstallMO(fr)
++InstallMO(hu)
++InstallMO(it)
++InstallMO(ja)
++InstallMO(ko)
++InstallMO(nl)
++InstallMO(no)
++InstallMO(pl)
++InstallMO(pt)
++InstallMO(ru)
++InstallMO(sv)

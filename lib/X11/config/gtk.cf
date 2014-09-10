@@ -1,0 +1,37 @@
+/*
+	Imakefile configuration for gtk+ of XFree86/OS2
+	Hung-Chi Chu <hcchu@r350.ee.ntu.edu.tw>	03/08/1999
+ */
+
+#ifndef GtkCF
+#define GtkCF
+
+#include <glib.cf>
+
+GTK_VERSION = 1.2.2
+
+/* disable XSHM ? since the official X servers are defective */
+#define GdkDisableXshm	YES
+
+#define GdkLibName	gdk12
+#define GtkLibName	gtk12
+
+/*---------------------------------------------------------------------*/
+GDK_LIB		= GdkLibName
+GTK_LIB		= GtkLibName
+
+GTK_INCDIR	= $(INCDIR)/GtkLibName
+GTK_INCLUDES	= -I$(GTK_INCDIR) -I$(GLIB_INCDIR)
+/* for sed substitution */
+S_GTK_INCS	= -I$${X11ROOT}/XFree86/include/GtkLibName $(S_GLIB_INCS)
+
+L_GDK_LIBS	= -l$(GDK_LIB) $(L_XSHM_LIBS) $(L_GLIB_LIBS) -lbsd -lsocket
+L_GTK_LIBS	= -l$(GTK_LIB) -l$(GDK_LIB) $(L_XSHM_LIBS) $(L_GLIB_LIBS) \
+		  -l$(INTL_LIB) -lbsd -lsocket
+
+GTK_EXE_PREFIX	= ProjectRoot
+GTK_DATA_PREFIX	= ProjectRoot
+GTK_SYSCONFDIR	= $(LIBDIR)
+GTK_LOCALEDIR	= $(XLOCALEDIR)
+
+#endif	/* GtkCF */
